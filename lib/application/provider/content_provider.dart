@@ -27,14 +27,14 @@ class ContentProvider extends ChangeNotifier {
       content: contentText ?? "",
       color: hexColor ?? "#fafafa",
     );
-    lessonProvider.lessonImageOrDescriptionOrVideoList
-        .add(LessonImageOrDescriptionOrVideo(
+    lessonProvider.addLessonImageOrDescription(
+        content: LessonImageOrDescriptionOrVideo(
       id: Uuid().v1(),
       image: null,
       imageDescription: null,
       content: content,
       videoLink: null,
+      quiz: null,
     ));
-    notifyListeners();
   }
 }

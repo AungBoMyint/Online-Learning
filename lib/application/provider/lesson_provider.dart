@@ -73,6 +73,7 @@ class LessonProvider extends ChangeNotifier {
         imageDescription: null,
         content: null,
         videoLink: null,
+        quiz: null,
       );
       lessonImageOrDescriptionOrVideoList.add(lessonImageOrDescriptionOrVideo);
       notifyListeners();
@@ -88,5 +89,13 @@ class LessonProvider extends ChangeNotifier {
         lessonImageOrDescriptionOrVideoList[id].copyWith(
       imageDescription: imageDescription,
     );
+  }
+
+  //Add LessonImageOrDescription from Contact-Provider Into This list
+  //to rebuild UI
+  void addLessonImageOrDescription(
+      {required LessonImageOrDescriptionOrVideo content}) {
+    lessonImageOrDescriptionOrVideoList.add(content);
+    notifyListeners();
   }
 }

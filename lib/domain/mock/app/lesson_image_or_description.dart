@@ -10,6 +10,7 @@ class LessonContentMock {
       imageDescription: null,
       content: null,
       videoLink: "8caOiNbUrfo",
+      quiz: null,
     ),
     LessonImageOrDescriptionOrVideo(
       id: "00",
@@ -17,6 +18,7 @@ class LessonContentMock {
       imageDescription: null,
       content: Content(content: content, color: "#ec407a"),
       videoLink: null,
+      quiz: null,
     ),
     LessonImageOrDescriptionOrVideo(
       id: "00",
@@ -24,6 +26,7 @@ class LessonContentMock {
       imageDescription: null,
       content: null,
       videoLink: null,
+      quiz: null,
     ),
   ];
 }

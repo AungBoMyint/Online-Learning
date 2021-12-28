@@ -21,7 +21,9 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
 class _$LessonTearOff {
   const _$LessonTearOff();
 
-  _Lesson call({required String id, required String? lessonTitle}) {
+  _Lesson call(
+      {required String id,
+      @JsonKey(defaultValue: "Quiz") required String? lessonTitle}) {
     return _Lesson(
       id: id,
       lessonTitle: lessonTitle,
@@ -39,6 +41,7 @@ const $Lesson = _$LessonTearOff();
 /// @nodoc
 mixin _$Lesson {
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: "Quiz")
   String? get lessonTitle => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,7 +53,7 @@ mixin _$Lesson {
 abstract class $LessonCopyWith<$Res> {
   factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) =
       _$LessonCopyWithImpl<$Res>;
-  $Res call({String id, String? lessonTitle});
+  $Res call({String id, @JsonKey(defaultValue: "Quiz") String? lessonTitle});
 }
 
 /// @nodoc
@@ -84,7 +87,7 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
   factory _$LessonCopyWith(_Lesson value, $Res Function(_Lesson) then) =
       __$LessonCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String? lessonTitle});
+  $Res call({String id, @JsonKey(defaultValue: "Quiz") String? lessonTitle});
 }
 
 /// @nodoc
@@ -117,7 +120,9 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Lesson implements _Lesson {
-  const _$_Lesson({required this.id, required this.lessonTitle});
+  const _$_Lesson(
+      {required this.id,
+      @JsonKey(defaultValue: "Quiz") required this.lessonTitle});
 
   factory _$_Lesson.fromJson(Map<String, dynamic> json) =>
       _$$_LessonFromJson(json);
@@ -125,6 +130,7 @@ class _$_Lesson implements _Lesson {
   @override
   final String id;
   @override
+  @JsonKey(defaultValue: "Quiz")
   final String? lessonTitle;
 
   @override
@@ -157,14 +163,16 @@ class _$_Lesson implements _Lesson {
 }
 
 abstract class _Lesson implements Lesson {
-  const factory _Lesson({required String id, required String? lessonTitle}) =
-      _$_Lesson;
+  const factory _Lesson(
+      {required String id,
+      @JsonKey(defaultValue: "Quiz") required String? lessonTitle}) = _$_Lesson;
 
   factory _Lesson.fromJson(Map<String, dynamic> json) = _$_Lesson.fromJson;
 
   @override
   String get id;
   @override
+  @JsonKey(defaultValue: "Quiz")
   String? get lessonTitle;
   @override
   @JsonKey(ignore: true)

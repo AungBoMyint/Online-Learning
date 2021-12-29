@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_learning/domain/json/course/lesson.dart';
 import 'package:online_learning/domain/json/course/lesson_image_or_description_or_video.dart';
 import 'package:online_learning/domain/json/question/choice_item.dart';
 import 'package:online_learning/domain/json/question/multiple_choice/multiple_choice.dart';
@@ -26,14 +27,22 @@ class QuizProvider extends ChangeNotifier {
   String? moduleId;
 
   //Module's ID TO Add Lesson
-  LessonImageOrDescriptionOrVideo? lessonImageOrDescriptionOrVideo;
+  List<LessonImageOrDescriptionOrVideo> lessonImageOrDescriptionOrVideoList =
+      [];
 
   //Group Value Of Radio Button
   String? groupValue;
 
+  //Lesson Object
+  Lesson? lesson;
+
   //Save Question Type
   void saveQuestionType(String value) {
     type = value;
+    //we need to create lesson that is parent of this quiz in Firestore.
+    lesson = Lesson.empty().copyWith(
+      lessonTitle: "Quiz",
+    );
     notifyListeners();
   }
 
@@ -115,14 +124,14 @@ class QuizProvider extends ChangeNotifier {
         question: question ?? "",
         choiceItemMap: choiceItemMap,
       );
-      lessonImageOrDescriptionOrVideo = LessonImageOrDescriptionOrVideo(
+      lessonImageOrDescriptionOrVideoList.add(LessonImageOrDescriptionOrVideo(
         id: Uuid().v1(),
         image: null,
         imageDescription: null,
         content: null,
         videoLink: null,
         quiz: oneChoice,
-      );
+      ));
     }
     if (type == QuestionType.type[1]) {
       final multipleChoice = MultipleChoice(
@@ -130,18 +139,18 @@ class QuizProvider extends ChangeNotifier {
         question: question ?? "",
         choiceItemMap: choiceItemMap,
       );
-      lessonImageOrDescriptionOrVideo = LessonImageOrDescriptionOrVideo(
+      lessonImageOrDescriptionOrVideoList.add(LessonImageOrDescriptionOrVideo(
         id: Uuid().v1(),
         image: null,
         imageDescription: null,
         content: null,
         videoLink: null,
         quiz: multipleChoice,
-      );
+      ));
     }
     notifyListeners();
     print(
-        "ModuleId: $moduleId \n LessonImageOR: $lessonImageOrDescriptionOrVideo");
+        "ModuleId: $moduleId \n LessonImageOR: ${lessonImageOrDescriptionOrVideoList[0]}");
     print("Group Value: $groupValue");
   }
 }

@@ -19,5 +19,9 @@ class QuestionConveter<T> implements JsonConverter<T, Object?> {
   }
 
   @override
-  Object? toJson(T object) => object;
+  Map<String, dynamic>? toJson(T object) {
+    if (object is OneChoice) {
+      return object.toJson();
+    }
+  }
 }

@@ -142,16 +142,23 @@ class YourCreatedCourseWidget extends StatelessWidget {
 
                                       ///Add Quiz
                                       TextButton(
-                                        onPressed: () =>
-                                            showDialogToChooseModuleListForEachFunction(
-                                                context,
-                                                (value) =>
-                                                    showQuizTypeAndAddQuizType(
-                                                      context,
-                                                      value,
-                                                    ),
-                                                dialogTitle:
-                                                    "Choose A Module That you want to add Quiz!."),
+                                        onPressed: () {
+                                          //We Request This Course's Modules
+                                          BlocProvider.of<DataBloc>(context)
+                                              .add(GetCurrentCourseModules(
+                                                  courseId:
+                                                      courseList[index].id));
+                                          /////////
+                                          showDialogToChooseModuleListForEachFunction(
+                                              context,
+                                              (value) =>
+                                                  showQuizTypeAndAddQuizType(
+                                                    context,
+                                                    value,
+                                                  ),
+                                              dialogTitle:
+                                                  "Choose A Module That you want to add Quiz!.");
+                                        },
                                         child: Row(
                                           children: const [
                                             Icon(

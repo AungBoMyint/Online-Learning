@@ -30,8 +30,7 @@ final contentProvider =
   return ContentProvider(lesson);
 });
 final quizProvider = ChangeNotifierProvider.autoDispose<QuizProvider>((ref) {
-  final lesson = ref.watch(lessonProvider);
-  return QuizProvider(lesson);
+  return QuizProvider();
 });
 final functionProvider = ChangeNotifierProvider<FunctionProvider>((ref) {
   return FunctionProvider();

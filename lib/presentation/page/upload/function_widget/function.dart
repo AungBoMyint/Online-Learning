@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
 import 'package:online_learning/domain/json/course/module.dart';
+import 'package:online_learning/domain/mock/app/question_type.dart';
 
 import '../../../../route.dart';
 
@@ -133,5 +134,125 @@ void addContent(BuildContext context) {
   //Go To Add Content Page
   Navigator.of(context).pushNamed(
     RouteGenerator.addContentPage,
+  );
+}
+
+//Show QuizType And Add Quiz Type
+void showQuizTypeAndAddQuizType(BuildContext context, String moduleId) {
+  showAnimatedDialog(
+    context: context,
+    builder: (context) {
+      return Consumer(builder: (context, ref, child) {
+        final provider = ref.watch(quizProvider);
+        return AlertDialog(
+          title: const Text("Choose Quiz Type!.",
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              )),
+          content: ListView.separated(
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  provider.saveModuleID(moduleId);
+                  provider.saveQuestionType(QuestionType.type[index]);
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed(
+                    RouteGenerator.addQuizPage,
+                  );
+                },
+                //Each Quiz Type UI
+                child: SizedBox(
+                  height: 50,
+                  child: AnimatedContainer(
+                    height: 50,
+                    duration: const Duration(milliseconds: 500),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20),
+                      ),
+                      color: index == 0 ? Colors.green : Colors.yellow,
+                    ),
+                    child: Center(
+                      child: Text(
+                        QuestionType.type[index],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            itemCount: QuestionType.type.length,
+          ),
+        );
+      });
+    },
+  );
+}
+
+///Show Module List To Add Content Or Quiz
+void showDialogToChooseModuleListForEachFunction(
+  BuildContext context,
+  Function(String moduleId) callBack, {
+  required String dialogTitle,
+}) {
+  ///Then Show Dialog To Choose Module to add Lesson
+  showAnimatedDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text(dialogTitle,
+            style: const TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            )),
+        //Module List
+        content: BlocConsumer<DataBloc, DataState>(
+          builder: (context, state) {
+            final moduleList = state.moduleList;
+            if (moduleList != null) {
+              return ListView.separated(
+                itemBuilder: (context, index) {
+                  return TextButton(
+                    onPressed: () {
+                      ///Pop This Dialog
+                      Navigator.of(context).pop();
+
+                      ///Then we add this module's ID into lessonProvider
+
+                      ///Then We Call CallBack Function of Each Method this function
+                      ///is called.
+                      callBack(moduleList[index].id);
+                    },
+                    child: Text(moduleList[index].moduleTitle ?? "",
+                        style: const TextStyle(
+                          color: Colors.blue,
+                        )),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(height: 10);
+                },
+                itemCount: moduleList.length,
+              );
+            } else {
+              return const Text("Here is no any module!.",
+                  style: TextStyle(
+                    color: Colors.red,
+                  ));
+            }
+          },
+          listener: (context, state) {},
+        ),
+      );
+    },
   );
 }

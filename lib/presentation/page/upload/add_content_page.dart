@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:online_learning/application/provider/provider.dart';
-import 'package:flutter_material_color_picker/flutter_material_color_picker.dart';
 import 'package:online_learning/domain/mock/app/color.dart';
 
 class AddContentPage extends ConsumerWidget {

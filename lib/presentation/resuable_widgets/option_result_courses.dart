@@ -82,9 +82,6 @@ class OptionResultCourses extends ConsumerWidget {
                               Radius.circular(20),
                             ),
                           ),
-                          color: courseResult == null
-                              ? Colors.white
-                              : Colors.green,
                           child: SizedBox(
                               height: size.height * 0.25,
                               width: size.width,

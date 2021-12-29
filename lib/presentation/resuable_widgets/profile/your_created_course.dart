@@ -119,76 +119,12 @@ class YourCreatedCourseWidget extends StatelessWidget {
                                                       courseList[index].id));
 
                                           ///Then Show Dialog To Choose Module to add Lesson
-                                          showAnimatedDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: const Text(
-                                                    "Choose Module That you watn to add Lesson to!",
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                    )),
-                                                //Module List
-                                                content: BlocConsumer<DataBloc,
-                                                    DataState>(
-                                                  builder: (context, state) {
-                                                    final moduleList =
-                                                        state.moduleList;
-                                                    if (moduleList != null) {
-                                                      return ListView.separated(
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          return TextButton(
-                                                            onPressed: () {
-                                                              ///Pop This Dialog
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-
-                                                              ///Then we add this module's ID into lessonProvider
-
-                                                              ///Then Show Lesson Dialog
-                                                              addLesson(
-                                                                  context,
-                                                                  moduleList[
-                                                                          index]
-                                                                      .id);
-                                                            },
-                                                            child: Text(
-                                                                moduleList[index]
-                                                                        .moduleTitle ??
-                                                                    "",
-                                                                style:
-                                                                    const TextStyle(
-                                                                  color: Colors
-                                                                      .blue,
-                                                                )),
-                                                          );
-                                                        },
-                                                        separatorBuilder:
-                                                            (context, index) {
-                                                          return const SizedBox(
-                                                              height: 10);
-                                                        },
-                                                        itemCount:
-                                                            moduleList.length,
-                                                      );
-                                                    } else {
-                                                      return const Text(
-                                                          "Here is no any module!.",
-                                                          style: TextStyle(
-                                                            color: Colors.red,
-                                                          ));
-                                                    }
-                                                  },
-                                                  listener: (context, state) {},
-                                                ),
-                                              );
-                                            },
-                                          );
+                                          showDialogToChooseModuleListForEachFunction(
+                                              context,
+                                              (value) =>
+                                                  addLesson(context, value),
+                                              dialogTitle:
+                                                  "Choose A Module That you want to add Lesson!.");
                                         },
                                         child: Row(
                                           children: const [
@@ -196,6 +132,34 @@ class YourCreatedCourseWidget extends StatelessWidget {
                                                 color: Colors.black),
                                             SizedBox(width: 10),
                                             Text("Add Lesson",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16,
+                                                )),
+                                          ],
+                                        ),
+                                      ),
+
+                                      ///Add Quiz
+                                      TextButton(
+                                        onPressed: () =>
+                                            showDialogToChooseModuleListForEachFunction(
+                                                context,
+                                                (value) =>
+                                                    showQuizTypeAndAddQuizType(
+                                                      context,
+                                                      value,
+                                                    ),
+                                                dialogTitle:
+                                                    "Choose A Module That you want to add Quiz!."),
+                                        child: Row(
+                                          children: const [
+                                            Icon(
+                                              FontAwesomeIcons.plus,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text("Add Quiz",
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 16,
@@ -226,3 +190,5 @@ class YourCreatedCourseWidget extends StatelessWidget {
     );
   }
 }
+
+//Choice Current Module AlertDialog

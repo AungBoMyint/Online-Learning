@@ -10,6 +10,7 @@ import 'package:online_learning/presentation/page/module_detail/module_detial_pa
 import 'package:online_learning/presentation/page/phone_number_signin.dart';
 import 'package:online_learning/presentation/page/sign_up_page.dart';
 import 'package:online_learning/presentation/page/upload/add_content_page.dart';
+import 'package:online_learning/presentation/page/upload/add_quiz_page.dart';
 import 'package:online_learning/presentation/page/upload/upload_course_page.dart';
 import 'package:online_learning/presentation/screen/check_user_screen.dart';
 
@@ -22,6 +23,7 @@ class RouteGenerator {
   static const String courseUploadPage = '/courseUploadPage';
   static const String addLessonPage = '/addLessonPage';
   static const String addContentPage = '/addContentPage';
+  static const String addQuizPage = '/addQuizPage';
   static const String loginPage = '/login';
   static const String signUpPage = '/signUpPage';
   static const String signInPhoneNumberPage = '/signInPhoneNumber';
@@ -67,6 +69,10 @@ class RouteGenerator {
       case addContentPage:
         return MaterialPageRoute(
           builder: (context) => const AddContentPage(),
+        );
+      case addQuizPage:
+        return MaterialPageRoute(
+          builder: (context) => const AddQuizPage(),
         );
       case loginPage:
         return MaterialPageRoute(

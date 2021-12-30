@@ -19,5 +19,6 @@ Map<String, dynamic> _$$_MultipleChoiceToJson(_$_MultipleChoice instance) =>
     <String, dynamic>{
       'quizType': instance.quizType,
       'question': instance.question,
-      'choiceItemMap': instance.choiceItemMap,
+      'choiceItemMap': instance.choiceItemMap
+          .map((key, value) => MapEntry(key, value.toJson())),
     };

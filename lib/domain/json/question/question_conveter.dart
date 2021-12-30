@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:online_learning/domain/json/question/fill_blank/fill_blank.dart';
 import 'package:online_learning/domain/json/question/multiple_choice/multiple_choice.dart';
 
 import 'one_choice/one_choice.dart';
@@ -14,6 +15,9 @@ class QuestionConveter<T> implements JsonConverter<T, Object?> {
       if (json['quizType'] == "multiple_choice") {
         return MultipleChoice.fromJson(json) as T;
       }
+      if (json['quizType'] == "fill_blank") {
+        return FillBlank.fromJson(json) as T;
+      }
     }
     return json as T;
   }
@@ -21,6 +25,12 @@ class QuestionConveter<T> implements JsonConverter<T, Object?> {
   @override
   Map<String, dynamic>? toJson(T object) {
     if (object is OneChoice) {
+      return object.toJson();
+    }
+    if (object is MultipleChoice) {
+      return object.toJson();
+    }
+    if (object is FillBlank) {
       return object.toJson();
     }
   }

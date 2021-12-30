@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:online_learning/domain/json/course/lesson_image_or_description_or_video.dart';
+import 'package:online_learning/domain/json/question/multiple_choice/multiple_choice.dart';
+import 'package:online_learning/domain/json/question/one_choice/one_choice.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class LessonDetailPage extends StatelessWidget {
@@ -17,6 +19,7 @@ class LessonDetailPage extends StatelessWidget {
       final image = item.image;
       final content = item.content;
       final videoLink = item.videoLink;
+      final quiz = item.quiz;
 
       ///Image
       if (image != null) {
@@ -81,6 +84,16 @@ class LessonDetailPage extends StatelessWidget {
             ),
           ),
         );
+      }
+      ////Quiz Widget
+      if (quiz != null) {
+        if (quiz is OneChoice) {
+          //TODO: One Choice Widget
+        } else if (quiz is MultipleChoice) {
+          //TODO: Multiple Choice Widget
+        } else {
+          //TODO: FillBlank Widget
+        }
       }
       return Container();
     }).toList());

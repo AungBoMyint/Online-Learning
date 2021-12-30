@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_learning/domain/json/course/lesson.dart';
 import 'package:online_learning/domain/json/course/lesson_image_or_description_or_video.dart';
 import 'package:online_learning/domain/json/question/choice_item.dart';
+import 'package:online_learning/domain/json/question/fill_blank/fill_blank.dart';
 import 'package:online_learning/domain/json/question/multiple_choice/multiple_choice.dart';
 import 'package:online_learning/domain/json/question/one_choice/one_choice.dart';
 import 'package:online_learning/domain/mock/app/question_type.dart';
@@ -22,6 +23,8 @@ class QuizProvider extends ChangeNotifier {
   String? choiceItemText;
   //Choice Item is True-Answer
   bool isTrueAnswer = false;
+  //True Answer for FillBlank Quiz Type
+  String? blankTrueAnswer;
 
   //ModuleID to add into FirebaseStore
   String? moduleId;
@@ -49,6 +52,12 @@ class QuizProvider extends ChangeNotifier {
   //Save Module's ID
   void saveModuleID(String id) {
     moduleId = id;
+    notifyListeners();
+  }
+
+  //Change BlankTrueAnswer
+  void changeBlankTrueAnswer(String? value) {
+    blankTrueAnswer = value;
     notifyListeners();
   }
 
@@ -109,6 +118,18 @@ class QuizProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///Change Checkbox value
+  void changeCheckBoxValue({required bool value, required String id}) {
+    for (var item in choiceItemMap.entries) {
+      if (item.value.uid == id) {
+        choiceItemMap[id] = choiceItemMap[id]!.copyWith(
+          isTrueAnswer: value,
+        );
+      }
+    }
+    notifyListeners();
+  }
+
   //Change Choice Item is TrueAnswer
   void changeIsTrueAnswer(bool value) {
     isTrueAnswer = value;
@@ -146,6 +167,23 @@ class QuizProvider extends ChangeNotifier {
         content: null,
         videoLink: null,
         quiz: multipleChoice,
+      ));
+    }
+    //Fill Blank Object
+    if (type == QuestionType.type[2]) {
+      final fillBlank = FillBlank(
+        question: question ?? "error",
+        trueAnswer: blankTrueAnswer ?? "error",
+        quizType: 'fill_blank',
+      );
+
+      lessonImageOrDescriptionOrVideoList.add(LessonImageOrDescriptionOrVideo(
+        id: Uuid().v1(),
+        image: null,
+        imageDescription: null,
+        content: null,
+        videoLink: null,
+        quiz: fillBlank,
       ));
     }
     notifyListeners();

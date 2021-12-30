@@ -9,6 +9,16 @@ class FunctionProvider extends ChangeNotifier {
   String? moduleId;
   int moduleLength = 0;
 
+  ///Group Value
+  String? groupValue;
+
+  ///We Add First We OneChoice of Quiz is not null,and build its widget at the
+  ///first time
+  void changeGroupValue(String? value) {
+    groupValue = value;
+    notifyListeners();
+  }
+
   void changeCourseId({required String id}) {
     courseId = id;
     notifyListeners();

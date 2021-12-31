@@ -9,6 +9,9 @@ class FunctionProvider extends ChangeNotifier {
   String? moduleId;
   int moduleLength = 0;
 
+  //Page Controller OF Module Detail
+  final pageController = PageController(initialPage: 0);
+
   ///Group Value
   String? groupValue;
 

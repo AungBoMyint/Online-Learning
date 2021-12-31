@@ -1,19 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:online_learning/application/provider/provider.dart';
 import 'package:online_learning/domain/json/course/lesson_image_or_description_or_video.dart';
-import 'package:online_learning/domain/json/question/multiple_choice/multiple_choice.dart';
-import 'package:online_learning/domain/json/question/one_choice/one_choice.dart';
+import 'package:online_learning/presentation/page/lesson_detail/function.dart';
+import 'quiz_widget/one_choice_widget.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class LessonDetailPage extends StatelessWidget {
+class LessonDetailPage extends ConsumerWidget {
   final List<LessonImageOrDescriptionOrVideo> lessonContent;
   const LessonDetailPage({Key? key, required this.lessonContent})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
+    final provider = ref.watch(functionProvider);
     return ListView(
         children: lessonContent.map<Widget>((item) {
       final image = item.image;
@@ -87,13 +90,44 @@ class LessonDetailPage extends StatelessWidget {
       }
       ////Quiz Widget
       if (quiz != null) {
-        if (quiz is OneChoice) {
-          //TODO: One Choice Widget
-        } else if (quiz is MultipleChoice) {
-          //TODO: Multiple Choice Widget
-        } else {
-          //TODO: FillBlank Widget
-        }
+        //Show Button as soon as widget is build.
+        showBottomSheetToCheckAnswer(
+          context: context,
+          callBack: () {
+            final trueAnswer = quiz.choiceItemMap.values
+                .where((element) => element.isTrueAnswer == true);
+            if (provider.groupValue == trueAnswer.first.uid) {
+              //TODO: show true button sheet
+              showTrueBottomSheet(
+                context: context,
+                callBack: () {
+                  provider.pageController.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                  //We need to pop
+                  Navigator.of(context).pop();
+                },
+                size: size,
+              );
+            } else {
+              //TODO: show false button sheet
+              showWrongBottomSheet(
+                context: context,
+                callBack: () => Navigator.of(context).pop(),
+                size: size,
+              );
+            }
+          },
+          size: size,
+        );
+        print("Quiz: $quiz");
+
+        final oneChoice = quiz;
+        //We need to pre add groupValue at the first time
+        //provider.changeGroupValue(quiz.choiceItemMap.entries.first.key);
+        //TODO: One Choice Widget
+        return OneChoiceWidget(oneChoice: oneChoice);
       }
       return Container();
     }).toList());

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
@@ -13,12 +12,11 @@ class ModuleDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
-    final provider = ref.watch(functionProvider);
     return BlocConsumer<DataBloc, DataState>(
       builder: (context, stateData) {
-        final lessonList = stateData.lessonList;
-        print("LessonList: ${lessonList.length}");
+        final provider = ref.watch(functionProvider);
         final _pageController = PageController(initialPage: 0);
+        final lessonList = stateData.lessonList;
         if (lessonList.isNotEmpty) {
           return BlocConsumer<FunctionBloc, FunctionState>(
               listener: (context, state) {},

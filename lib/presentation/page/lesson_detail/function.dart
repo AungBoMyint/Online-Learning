@@ -58,7 +58,7 @@ void showTrueBottomSheet({
         width: size.width,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(primary: Colors.green),
-          onPressed: () => callBack,
+          onPressed: callBack,
           child: const Text("Continue",
               style: TextStyle(
                 color: Colors.white,
@@ -80,26 +80,30 @@ void showWrongBottomSheet({
   showModalBottomSheet(
     isDismissible: false,
     elevation: 10,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20), topRight: Radius.circular(20)),
     ),
     constraints: const BoxConstraints(
-      maxHeight: 250,
+      maxHeight: 200,
     ),
     context: context,
     builder: (context) {
       return SizedBox(
-          height: 250,
+          height: 200,
           width: size.width,
           child: Column(
             children: [
               //Wrong Text
-              const Text("Ohh!Give it another try.",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  )),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text("GIVE IT ANOTHER TRY!.",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    )),
+              ),
               //Space Between
               const SizedBox(
                 height: 10,
@@ -108,10 +112,7 @@ void showWrongBottomSheet({
               ///Try Again Button
               ElevatedButton(
                 style: ElevatedButton.styleFrom(primary: Colors.red),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  callBack;
-                },
+                onPressed: callBack,
                 child: const Text("Try Again",
                     style: TextStyle(
                       color: Colors.white,

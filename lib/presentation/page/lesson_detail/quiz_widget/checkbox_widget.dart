@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
-import 'package:online_learning/domain/json/question/one_choice/one_choice.dart';
-import 'package:online_learning/presentation/page/lesson_detail/function.dart';
+import 'package:online_learning/domain/json/question/multiple_choice/multiple_choice.dart';
 
-class OneChoiceWidget extends ConsumerWidget {
-  final OneChoice oneChoice;
-  const OneChoiceWidget({Key? key, required this.oneChoice}) : super(key: key);
+import '../function.dart';
+
+class CheckBoxWidget extends ConsumerWidget {
+  final MultipleChoice multipleChoice;
+  const CheckBoxWidget({Key? key, required this.multipleChoice})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,11 +24,24 @@ class OneChoiceWidget extends ConsumerWidget {
           style: ElevatedButton.styleFrom(primary: Colors.blue),
           onPressed: () {
             ///Check The Answer is true or fasle
-            if (provider.groupValue ==
-                oneChoice.choiceItemMap.entries
-                    .where((element) => element.value.isTrueAnswer == true)
-                    .first
-                    .key) {
+            //First we drag true answer of Original Map
+            final originalTrueMap = multipleChoice.choiceItemMap.entries.where(
+              (element) => element.value.isTrueAnswer == true,
+            );
+            final userTrueMap = provider.userTrueMap.entries
+                .where((element) => element.value == true);
+            print("UserTrueMap: $userTrueMap");
+            print("OriginalTrueMap: $originalTrueMap");
+            //Then we loop this map and check it match
+            var totalTrueAnswer = 0;
+            for (var userTrueMap in userTrueMap) {
+              for (var oriTrue in originalTrueMap) {
+                if (userTrueMap.key == oriTrue.key) {
+                  totalTrueAnswer++;
+                }
+              }
+            }
+            if (originalTrueMap.length == totalTrueAnswer) {
               //Show True Answer
               showTrueBottomSheet(
                 context: context,
@@ -79,7 +94,7 @@ class OneChoiceWidget extends ConsumerWidget {
             ///Question Title
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(oneChoice.question,
+              child: Text(multipleChoice.question,
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -89,25 +104,24 @@ class OneChoiceWidget extends ConsumerWidget {
 
             ///Space
             const SizedBox(height: 10),
-            for (var item in oneChoice.choiceItemMap.entries) ...[
+            for (var item in multipleChoice.choiceItemMap.entries) ...[
               Card(
                 elevation: 10,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                color: provider.groupValue == item.value.uid
+                color: provider.userTrueMap[item.key] ?? false
                     ? Colors.blue
                     : Colors.white,
-                child: RadioListTile<String>(
+                child: CheckboxListTile(
                   activeColor: Colors.white,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                  value: item.value.uid,
-                  groupValue: provider.groupValue,
-                  onChanged: (value) => provider.changeGroupValue(value),
+                  value: provider.userTrueMap[item.key],
+                  onChanged: (value) =>
+                      provider.addMapBoolean(item.key, value ?? false),
                   title: Text(
                     item.value.text ?? "Sorry Some Error Occur.",
                     style: TextStyle(
-                      color: provider.groupValue == item.value.uid
+                      color: provider.userTrueMap[item.key] ?? false
                           ? Colors.white
                           : Colors.black,
                       fontWeight: FontWeight.bold,

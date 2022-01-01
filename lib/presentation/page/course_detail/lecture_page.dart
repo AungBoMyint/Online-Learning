@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
-import 'package:online_learning/application/provider/function_provider.dart';
+import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
 import 'package:online_learning/domain/hive/course_hive.dart';
 import 'package:online_learning/route.dart';
@@ -35,11 +35,18 @@ class LecturePage extends ConsumerWidget {
                   BlocProvider.of<DataBloc>(context).add(
                       DataEvent.getCurrentModuleLessons(
                           moduleId: state.moduleList![index].id));
+
+                  ///We Need to Change LessonIndex at the first time to request
+                  ///the first lesson from FirebaseFirestore
+                  BlocProvider.of<FunctionBloc>(context)
+                      .add(ChangeLessonIndex(lessonIndex: 0));
                   //TODO: we add this module into Current Course
                   provider.addThisModuleOrNot(
                       moduleid: state.moduleList![index].id);
                   //Then Change Module Length
                   provider.changeModuleLength(value: state.moduleList!.length);
+                  provider.addModuleTitle(
+                      state.moduleList![index].moduleTitle ?? "");
 
                   ///TODO:Go To Module Detail contain Lesson and Content
                   Navigator.of(context).pushNamed(

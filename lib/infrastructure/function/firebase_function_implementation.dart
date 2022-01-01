@@ -106,7 +106,9 @@ class FirebaseFunctionImplementation extends FirebaseFunctionParent {
           .doc(moduleId)
           .collection("lessons")
           .doc(lesson.id)
-          .set(lesson.toJson());
+          .set(lesson
+              .copyWith(dateTime: DateTime.now().millisecondsSinceEpoch)
+              .toJson());
       return const Right(unit);
     } on FirebaseException catch (e) {
       return const Left(FunctionFailure.fialToUpload());
@@ -202,6 +204,7 @@ class FirebaseFunctionImplementation extends FirebaseFunctionParent {
         .collection("lesson")
         .doc(moduleId)
         .collection("lessons")
+        .orderBy('dateTime', descending: false)
         .withConverter<Lesson>(
           fromFirestore: (snapshot, _) => Lesson.fromJson(snapshot.data()!),
           toFirestore: (lesson, _) => lesson.toJson(),

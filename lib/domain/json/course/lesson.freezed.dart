@@ -23,10 +23,12 @@ class _$LessonTearOff {
 
   _Lesson call(
       {required String id,
-      @JsonKey(defaultValue: "Quiz") required String? lessonTitle}) {
+      @JsonKey(defaultValue: "Quiz") required String? lessonTitle,
+      required int dateTime}) {
     return _Lesson(
       id: id,
       lessonTitle: lessonTitle,
+      dateTime: dateTime,
     );
   }
 
@@ -43,6 +45,7 @@ mixin _$Lesson {
   String get id => throw _privateConstructorUsedError;
   @JsonKey(defaultValue: "Quiz")
   String? get lessonTitle => throw _privateConstructorUsedError;
+  int get dateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +56,10 @@ mixin _$Lesson {
 abstract class $LessonCopyWith<$Res> {
   factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) =
       _$LessonCopyWithImpl<$Res>;
-  $Res call({String id, @JsonKey(defaultValue: "Quiz") String? lessonTitle});
+  $Res call(
+      {String id,
+      @JsonKey(defaultValue: "Quiz") String? lessonTitle,
+      int dateTime});
 }
 
 /// @nodoc
@@ -68,6 +74,7 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? lessonTitle = freezed,
+    Object? dateTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -78,6 +85,10 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
           ? _value.lessonTitle
           : lessonTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -87,7 +98,10 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
   factory _$LessonCopyWith(_Lesson value, $Res Function(_Lesson) then) =
       __$LessonCopyWithImpl<$Res>;
   @override
-  $Res call({String id, @JsonKey(defaultValue: "Quiz") String? lessonTitle});
+  $Res call(
+      {String id,
+      @JsonKey(defaultValue: "Quiz") String? lessonTitle,
+      int dateTime});
 }
 
 /// @nodoc
@@ -103,6 +117,7 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? lessonTitle = freezed,
+    Object? dateTime = freezed,
   }) {
     return _then(_Lesson(
       id: id == freezed
@@ -113,6 +128,10 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
           ? _value.lessonTitle
           : lessonTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -122,7 +141,8 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
 class _$_Lesson implements _Lesson {
   const _$_Lesson(
       {required this.id,
-      @JsonKey(defaultValue: "Quiz") required this.lessonTitle});
+      @JsonKey(defaultValue: "Quiz") required this.lessonTitle,
+      required this.dateTime});
 
   factory _$_Lesson.fromJson(Map<String, dynamic> json) =>
       _$$_LessonFromJson(json);
@@ -132,10 +152,12 @@ class _$_Lesson implements _Lesson {
   @override
   @JsonKey(defaultValue: "Quiz")
   final String? lessonTitle;
+  @override
+  final int dateTime;
 
   @override
   String toString() {
-    return 'Lesson(id: $id, lessonTitle: $lessonTitle)';
+    return 'Lesson(id: $id, lessonTitle: $lessonTitle, dateTime: $dateTime)';
   }
 
   @override
@@ -145,11 +167,13 @@ class _$_Lesson implements _Lesson {
             other is _Lesson &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.lessonTitle, lessonTitle) ||
-                other.lessonTitle == lessonTitle));
+                other.lessonTitle == lessonTitle) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, lessonTitle);
+  int get hashCode => Object.hash(runtimeType, id, lessonTitle, dateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -165,7 +189,8 @@ class _$_Lesson implements _Lesson {
 abstract class _Lesson implements Lesson {
   const factory _Lesson(
       {required String id,
-      @JsonKey(defaultValue: "Quiz") required String? lessonTitle}) = _$_Lesson;
+      @JsonKey(defaultValue: "Quiz") required String? lessonTitle,
+      required int dateTime}) = _$_Lesson;
 
   factory _Lesson.fromJson(Map<String, dynamic> json) = _$_Lesson.fromJson;
 
@@ -174,6 +199,8 @@ abstract class _Lesson implements Lesson {
   @override
   @JsonKey(defaultValue: "Quiz")
   String? get lessonTitle;
+  @override
+  int get dateTime;
   @override
   @JsonKey(ignore: true)
   _$LessonCopyWith<_Lesson> get copyWith => throw _privateConstructorUsedError;

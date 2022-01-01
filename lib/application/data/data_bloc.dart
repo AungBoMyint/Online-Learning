@@ -158,6 +158,7 @@ class DataBloc extends Bloc<DataEvent, DataState> {
           .getCurrentModuleLesson(moduleId: event.moduleId)
           .then((value) => emit(state.copyWith(
               lessonList: value.docs.map((e) => e.data()).toList())));
+      state.copyWith(lessonList: []);
     }, transformer: sequential());
 
     //Get Current Lesson's Lesson Content

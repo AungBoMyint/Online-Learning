@@ -20,8 +20,9 @@ class FunctionBloc extends Bloc<FunctionEvent, FunctionState> {
         emit(state.copyWith(courseOptionId: event.courseOptionId)));
 
     ///Change Lesson Index
-    on<ChangeLessonIndex>(
-      (event, emit) => emit(state.copyWith(lessonIndex: event.lessonIndex)),
-    );
+    on<ChangeLessonIndex>((event, emit) {
+      state.copyWith(lessonIndex: 0);
+      emit(state.copyWith(lessonIndex: event.lessonIndex));
+    });
   }
 }

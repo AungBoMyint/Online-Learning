@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
-import 'package:online_learning/presentation/page/lesson_detail/lesson_detail_page.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:online_learning/presentation/page/lesson_detail/lesson_detail_main_widget.dart';
 
 class ModuleDetailPage extends ConsumerWidget {
   const ModuleDetailPage({Key? key}) : super(key: key);
@@ -15,7 +16,6 @@ class ModuleDetailPage extends ConsumerWidget {
     return BlocConsumer<DataBloc, DataState>(
       builder: (context, stateData) {
         final provider = ref.watch(functionProvider);
-        final _pageController = PageController(initialPage: 0);
         final lessonList = stateData.lessonList;
         if (lessonList.isNotEmpty) {
           return BlocConsumer<FunctionBloc, FunctionState>(
@@ -24,6 +24,7 @@ class ModuleDetailPage extends ConsumerWidget {
                 BlocProvider.of<DataBloc>(context).add(
                     GetCurrentLessonLessonContents(
                         lessonId: lessonList[state.lessonIndex].id));
+                print("LessonIndex: ${state.lessonIndex}");
 
                 ///We Need To Add This Lesson because This is the first page/
                 /////////
@@ -31,44 +32,10 @@ class ModuleDetailPage extends ConsumerWidget {
                   lessonId: lessonList[0].id,
                   lessonLength: lessonList.length,
                 );
+                ////
+                provider.addLessonList(lessonList.length);
                 return Scaffold(
                     backgroundColor: Colors.blue[50],
-                    //Bottom Page Controller To Change page
-                    bottomSheet: SizedBox(
-                        height: 50,
-                        width: size.width,
-                        child: Center(
-                          child: TextButton(
-                            onPressed: () {
-                              //We Change Next PageView
-                              _pageController.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.elasticInOut,
-                              );
-                              //Then We Check Add Or Not This Lesson
-                              provider.addThisLessonOrNot(
-                                lessonId: lessonList[
-                                        _pageController.page!.round() + 1]
-                                    .id,
-                                lessonLength: lessonList.length,
-                              );
-
-                              print(_pageController.page!.round() + 1);
-
-                              ///Change LessonIndex into Function Bloc
-                              BlocProvider.of<FunctionBloc>(context).add(
-                                  ChangeLessonIndex(
-                                      lessonIndex:
-                                          _pageController.page!.round() + 1));
-                            },
-                            child: const Text("Next",
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                )),
-                          ),
-                        )),
                     appBar: AppBar(
                       iconTheme: const IconThemeData(color: Colors.blue),
                       backgroundColor: Colors.white,
@@ -85,51 +52,100 @@ class ModuleDetailPage extends ConsumerWidget {
 
                     //Drawer
                     drawer: Drawer(
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              ///............///////
-                              provider.addThisLessonOrNot(
-                                lessonId: lessonList[index].id,
-                                lessonLength: lessonList.length,
-                              );
+                      child: Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: ListView(
+                            children: [
+                              ///Module Title
+                              Center(
+                                child: Text(provider.moduleTitle,
+                                    maxLines: 2,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    )),
+                              ),
 
-                              ///Change LessonIndex into Function Bloc
-                              BlocProvider.of<FunctionBloc>(context)
-                                  .add(ChangeLessonIndex(lessonIndex: index));
-                              //Then Request Content of This Lesson
-                              BlocProvider.of<DataBloc>(context)
-                                  .add(GetCurrentLessonLessonContents(
-                                lessonId: lessonList[index].id,
-                              ));
-                            },
-                            child: Container(
-                                color: Colors.green,
-                                child: ListTile(
-                                  title:
-                                      Text(lessonList[index].lessonTitle ?? "",
-                                          style: TextStyle(
-                                            color: state.lessonIndex == index
-                                                ? Colors.white
-                                                : Colors.black,
+                              ///Space SizeBox
+                              const SizedBox(height: 20),
+                              ////Lesson List
+                              SizedBox(
+                                height: size.height * 0.8,
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  primary: false,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        ///............///////
+                                        provider.addThisLessonOrNot(
+                                          lessonId: lessonList[index].id,
+                                          lessonLength: lessonList.length,
+                                        );
+
+                                        ///Change LessonIndex into Function Bloc
+                                        BlocProvider.of<FunctionBloc>(context)
+                                            .add(ChangeLessonIndex(
+                                                lessonIndex: index));
+                                        //Then Request Content of This Lesson
+                                        BlocProvider.of<DataBloc>(context)
+                                            .add(GetCurrentLessonLessonContents(
+                                          lessonId: lessonList[index].id,
+                                        ));
+                                      },
+                                      child: Container(
+                                          color: state.lessonIndex == index
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                          child: ListTile(
+                                            leading: CircleAvatar(
+                                              radius: 20,
+                                              backgroundColor:
+                                                  state.lessonIndex == index
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                              child: Text(
+                                                "${index + 1}",
+                                                style: TextStyle(
+                                                  color:
+                                                      state.lessonIndex == index
+                                                          ? Colors.black
+                                                          : Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            title: Text(
+                                                lessonList[index].lessonTitle ??
+                                                    "",
+                                                style: TextStyle(
+                                                  color:
+                                                      state.lessonIndex == index
+                                                          ? Colors.white
+                                                          : Colors.black,
+                                                )),
                                           )),
-                                )),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(height: 10);
-                        },
-                        itemCount: lessonList.length,
-                      ),
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return const SizedBox(height: 5);
+                                  },
+                                  itemCount: lessonList.length,
+                                ),
+                              ),
+                            ],
+                          )),
                     ),
                     //Body Lesson Content Detail
-                    body: stateData.lessonContentList != null
+                    body: stateData.lessonContentList.isNotEmpty
                         ? PageView(
+                            onPageChanged: (pos) {
+                              print("Page: $pos");
+                            },
                             physics: const NeverScrollableScrollPhysics(),
-                            controller: _pageController,
+                            controller: provider.pageController,
                             children: lessonList.map<Widget>((lessonContent) {
-                              return LessonDetailPage(
+                              return LessonDetailMainWidget(
                                 lessonContent: stateData.lessonContentList,
                               );
                             }).toList())

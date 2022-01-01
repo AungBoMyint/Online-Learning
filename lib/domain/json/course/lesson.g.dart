@@ -9,9 +9,11 @@ part of 'lesson.dart';
 _$_Lesson _$$_LessonFromJson(Map<String, dynamic> json) => _$_Lesson(
       id: json['id'] as String,
       lessonTitle: json['lessonTitle'] as String? ?? 'Quiz',
+      dateTime: json['dateTime'] as int,
     );
 
 Map<String, dynamic> _$$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'id': instance.id,
       'lessonTitle': instance.lessonTitle,
+      'dateTime': instance.dateTime,
     };

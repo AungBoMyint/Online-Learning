@@ -20,7 +20,6 @@ class LessonDetailPage extends ConsumerWidget {
         height: 50,
         width: size.width,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: Colors.green),
           onPressed: () {
             ///Change LessonIndex into Function Bloc if currentpage is not
             ///last page
@@ -49,7 +48,6 @@ class LessonDetailPage extends ConsumerWidget {
         final image = item.image;
         final content = item.content;
         final videoLink = item.videoLink;
-        final quiz = item.quiz;
 
         ///Image
         if (image != null) {

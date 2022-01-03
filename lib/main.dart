@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_learning/application/auth/bloc/auth_bloc.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
+import 'package:online_learning/domain/data/theme.dart';
 import 'package:online_learning/domain/hive/course_hive.dart';
 import 'package:online_learning/domain/hive/module_hive.dart';
 import 'package:online_learning/injectable_configuration.dart';
@@ -48,9 +49,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: AppThemeData.light(),
         initialRoute: RouteGenerator.checkUserScreen,
         onGenerateRoute: RouteGenerator.generateRoute,
       ),

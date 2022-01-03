@@ -19,25 +19,25 @@ class MockNavigationData {
       icon: FontAwesomeIcons.home,
       id: 0,
     ),
-    NavigationItem(
+    /*NavigationItem(
       name: "Favourite",
       icon: FontAwesomeIcons.star,
       id: 1,
-    ),
+    ),*/
     NavigationItem(
       name: "Course",
       icon: FontAwesomeIcons.bookOpen,
-      id: 2,
+      id: 1,
     ),
     NavigationItem(
       name: "Notification",
       icon: FontAwesomeIcons.bell,
-      id: 3,
+      id: 2,
     ),
     NavigationItem(
       name: "Profile",
       icon: FontAwesomeIcons.user,
-      id: 4,
+      id: 3,
     ),
   ];
 }

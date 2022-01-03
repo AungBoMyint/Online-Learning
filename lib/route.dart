@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:online_learning/presentation/page/add_lesson_page.dart';
 import 'package:online_learning/presentation/page/authenticated_page.dart';
-import 'package:online_learning/presentation/page/course_detail/course_detail_page.dart';
+import 'package:online_learning/presentation/page/course_detail/review_page.dart';
 import 'package:online_learning/presentation/page/email_verification_page.dart';
 import 'package:online_learning/presentation/page/initial_splash.dart';
-import 'package:online_learning/presentation/page/lesson_detail/lesson_detail_page.dart';
 import 'package:online_learning/presentation/page/module_detail/module_detial_page.dart';
 import 'package:online_learning/presentation/page/phone_number_signin.dart';
 import 'package:online_learning/presentation/page/sign_up_page.dart';
@@ -31,6 +30,7 @@ class RouteGenerator {
   // static const String courseDetailPage = '/courseDetailPage';
   static const String lessonDetailPage = '/lessonDetailPage';
   static const String moduleDetailPage = '/moduleDetailPage';
+  static const String reviewPage = '/reviewPage';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -49,6 +49,10 @@ class RouteGenerator {
       case moduleDetailPage:
         return MaterialPageRoute(
           builder: (context) => const ModuleDetailPage(),
+        );
+      case reviewPage:
+        return MaterialPageRoute(
+          builder: (context) => const ReviewPage(),
         );
       /* case courseDetailPage:
         return MaterialPageRoute(

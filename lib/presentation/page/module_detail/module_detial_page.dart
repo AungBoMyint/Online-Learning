@@ -5,6 +5,7 @@ import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:online_learning/domain/data/theme.dart';
 import 'package:online_learning/presentation/page/lesson_detail/lesson_detail_main_widget.dart';
 
 class ModuleDetailPage extends ConsumerWidget {
@@ -58,13 +59,10 @@ class ModuleDetailPage extends ConsumerWidget {
                             children: [
                               ///Module Title
                               Center(
-                                child: Text(provider.moduleTitle,
-                                    maxLines: 2,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    )),
+                                child: Text(
+                                  "Total Lesson: ${lessonList.length}",
+                                  style: AppThemeData.darkText.headline1,
+                                ),
                               ),
 
                               ///Space SizeBox
@@ -94,37 +92,40 @@ class ModuleDetailPage extends ConsumerWidget {
                                           lessonId: lessonList[index].id,
                                         ));
                                       },
-                                      child: Container(
-                                          color: state.lessonIndex == index
-                                              ? Colors.blue
-                                              : Colors.grey,
-                                          child: ListTile(
-                                            leading: CircleAvatar(
-                                              radius: 20,
-                                              backgroundColor:
-                                                  state.lessonIndex == index
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                              child: Text(
-                                                "${index + 1}",
-                                                style: TextStyle(
-                                                  color:
-                                                      state.lessonIndex == index
-                                                          ? Colors.black
-                                                          : Colors.white,
+                                      child: Center(
+                                        child: Container(
+                                            color: state.lessonIndex == index
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                            child: ListTile(
+                                              leading: CircleAvatar(
+                                                radius: 20,
+                                                backgroundColor:
+                                                    state.lessonIndex == index
+                                                        ? Colors.white
+                                                        : Colors.black,
+                                                child: Text(
+                                                  "${index + 1}",
+                                                  style: TextStyle(
+                                                    color: state.lessonIndex ==
+                                                            index
+                                                        ? Colors.black
+                                                        : Colors.white,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            title: Text(
-                                                lessonList[index].lessonTitle ??
-                                                    "",
-                                                style: TextStyle(
-                                                  color:
-                                                      state.lessonIndex == index
-                                                          ? Colors.white
-                                                          : Colors.black,
-                                                )),
-                                          )),
+                                              title: Text(
+                                                  lessonList[index]
+                                                          .lessonTitle ??
+                                                      "",
+                                                  style: TextStyle(
+                                                    color: state.lessonIndex ==
+                                                            index
+                                                        ? Colors.white
+                                                        : Colors.black,
+                                                  )),
+                                            )),
+                                      ),
                                     );
                                   },
                                   separatorBuilder: (context, index) {

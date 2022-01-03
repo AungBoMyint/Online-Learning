@@ -70,6 +70,8 @@ class OptionResultCourses extends ConsumerWidget {
                         ///Then Nevigate Course Detail Page
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => CourseDetialPage(
+                                  courseDescription:
+                                      courseList[index].description ?? "Wrong",
                                   courseName:
                                       courseList[index].courseName ?? "Wrong",
                                   imageUrl: courseList[index].image ?? "",

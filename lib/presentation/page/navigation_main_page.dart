@@ -5,7 +5,6 @@ import 'package:online_learning/domain/mock/app/navigation_item.dart';
 import 'package:online_learning/presentation/page/home_page.dart';
 
 import 'account_setting_page.dart';
-import 'book_mark_page.dart';
 import 'my_course_page.dart';
 import 'notification_page.dart';
 
@@ -24,7 +23,7 @@ class NavigationMainPage extends StatelessWidget {
         ),
         children: const [
           HomePage(),
-          BookMarkPage(),
+          // BookMarkPage(),
           MyCoursePage(),
           NotificationPage(),
           AccountSettingPage(),

@@ -15,134 +15,90 @@ class CustomUserProfileAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: size.width,
-      height: size.height * 0.4,
+      height: size.height * 0.3,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            BlocConsumer<AuthBloc, AuthState>(
-              builder: (context, state) {
-                final userModal = state.userModal;
-                return Padding(
-                    padding: const EdgeInsets.only(top: 0),
-                    child: SizedBox(
-                      height: size.height * 0.3,
-                      width: size.width,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                spreadRadius: 2,
-                              )
-                            ]),
-                        child: Row(
-                          children: [
-                            //User's Profile Image
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: SizedBox(
-                                height: size.height * 0.2,
-                                width: size.width * 0.4,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: CachedNetworkImage(
-                                    imageUrl: userModal!.image.isNotEmpty
-                                        ? userModal.image
-                                        : "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png",
-                                    fit: BoxFit.fill,
-                                    progressIndicatorBuilder:
-                                        (context, url, status) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: CircularProgressIndicator(
-                                            value: status.progress,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                  ),
-                                ),
+        child: BlocConsumer<AuthBloc, AuthState>(
+          builder: (context, state) {
+            final userModal = state.userModal;
+            return Padding(
+                padding: const EdgeInsets.only(top: 0),
+                child: SizedBox(
+                  height: size.height * 0.3,
+                  width: size.width,
+                  child: Container(
+                    decoration:
+                        const BoxDecoration(color: Colors.white, boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        spreadRadius: 2,
+                      )
+                    ]),
+                    child: Row(
+                      children: [
+                        //User's Profile Image
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: SizedBox(
+                            height: size.height * 0.2,
+                            width: size.width * 0.4,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: CachedNetworkImage(
+                                imageUrl: userModal!.image.isNotEmpty
+                                    ? userModal.image
+                                    : "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png",
+                                fit: BoxFit.fill,
+                                progressIndicatorBuilder:
+                                    (context, url, status) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        value: status.progress,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
                             ),
-
-                            ///Space
-                            const SizedBox(width: 0),
-                            ///////User's Name
-                            SizedBox(
-                                height: size.height * 0.2,
-                                width: size.width * 0.4,
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ///User Name
-                                      Text(
-                                        userModal.userName,
-                                        style: GoogleFonts.lobster(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 25,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-
-                                      ///User Score
-                                      Text(
-                                        "Quiz Score: 20",
-                                        style: AppThemeData.darkText.subtitle1,
-                                      )
-                                    ]))
-                          ],
+                          ),
                         ),
-                      ),
-                    ));
-              },
-              listener: (context, state) {},
-            ),
 
-            ///Space
-            //const SizedBox(height: 5),
+                        ///Space
+                        const SizedBox(width: 0),
+                        ///////User's Name
+                        SizedBox(
+                            height: size.height * 0.2,
+                            width: size.width * 0.4,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ///User Name
+                                  Text(
+                                    userModal.userName,
+                                    style: GoogleFonts.lobster(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
 
-            TabBar(indicatorColor: Colors.blue, tabs: [
-              ////Setting Tab Bar
-              Tab(
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.settings, color: Colors.black),
-                      const SizedBox(width: 10),
-                      Text("Setting",
-                          style: GoogleFonts.actor(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ))
-                    ]),
-              ),
-              ////Your Created Course
-              Tab(
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        FontAwesomeIcons.stickyNote,
-                        color: Colors.black,
-                      ),
-                      Text("Your Created Course",
-                          style: GoogleFonts.actor(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ))
-                    ]),
-              ),
-            ])
-          ],
+                                  ///User Score
+                                  Text(
+                                    "Quiz Score: 20",
+                                    style: AppThemeData.darkText.subtitle1,
+                                  )
+                                ]))
+                      ],
+                    ),
+                  ),
+                ));
+          },
+          listener: (context, state) {},
         ),
       ),
     );

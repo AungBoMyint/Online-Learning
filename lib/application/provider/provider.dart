@@ -6,6 +6,7 @@ import 'package:online_learning/application/provider/get_user_id.dart';
 import 'package:online_learning/application/provider/lesson_provider.dart';
 import 'package:online_learning/application/provider/module_provider.dart';
 import 'package:online_learning/application/provider/quiz_provider.dart';
+import 'package:online_learning/application/provider/setting_provider.dart';
 import 'package:online_learning/injectable_configuration.dart';
 
 final userIdProvider = Provider.autoDispose((ref) => getIt<CurrentUser>());
@@ -35,3 +36,5 @@ final quizProvider = ChangeNotifierProvider.autoDispose<QuizProvider>((ref) {
 final functionProvider = ChangeNotifierProvider<FunctionProvider>((ref) {
   return FunctionProvider();
 });
+final settingProvider = ChangeNotifierProvider.autoDispose<SettingProvider>(
+    (ref) => SettingProvider());

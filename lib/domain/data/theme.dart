@@ -72,6 +72,7 @@ class AppThemeData {
   ///Light Theme
   static ThemeData light() {
     return ThemeData(
+      hintColor: Colors.blue,
       scaffoldBackgroundColor: Colors.blue[50],
       appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
@@ -83,6 +84,10 @@ class AppThemeData {
           )),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        )),
         primary: Colors.blue,
       )),
       textTheme: darkText,

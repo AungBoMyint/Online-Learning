@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:online_learning/application/provider/get_user_id.dart';
 import 'package:online_learning/domain/json/course/course.dart';
 import 'package:online_learning/domain/json/course/lesson.dart';
-import 'package:online_learning/domain/json/course/lesson_image_or_description_or_video.dart';
 import 'package:online_learning/domain/json/course/module.dart';
 
 class CourseProvider extends ChangeNotifier {

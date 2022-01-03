@@ -12,8 +12,6 @@ import 'package:online_learning/domain/mock/app/course_bottomsheet.dart';
 import 'package:online_learning/presentation/page/upload/course_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import 'function_widget/function.dart';
-
 class UploadCoursePage extends ConsumerWidget {
   const UploadCoursePage({Key? key}) : super(key: key);
 

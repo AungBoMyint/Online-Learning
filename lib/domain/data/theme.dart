@@ -72,6 +72,12 @@ class AppThemeData {
   ///Light Theme
   static ThemeData light() {
     return ThemeData(
+      inputDecorationTheme: const InputDecorationTheme(
+          border: UnderlineInputBorder(
+              borderSide: BorderSide(
+        color: Colors.blue,
+        width: 2,
+      ))),
       hintColor: Colors.blue,
       scaffoldBackgroundColor: Colors.blue[50],
       appBarTheme: AppBarTheme(

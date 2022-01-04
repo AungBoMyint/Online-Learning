@@ -24,6 +24,12 @@ class AccountSettingPage extends StatelessWidget {
                 child: SizedBox(
                   height: 50,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.red,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ))),
                     onPressed: () {
                       //TODO: Logout
                     },

@@ -8,20 +8,28 @@ Widget nameUpdate(
     {required TextEditingController controller, required Size size}) {
   return Container(
     color: Colors.white,
-    width: size.width * 0.8,
+    width: size.width * 0.95,
     child: Row(children: [
+      //Space Between
+      const SizedBox(
+        width: 5,
+      ),
       //Pre Text
       Text(
-        "Name",
-        style: AppThemeData.darkText.subtitle1,
+        "Name:",
+        style: AppThemeData.darkText.headline3,
       ),
+      //Space Between
+      const SizedBox(width: 10),
       //TextField
       SizedBox(
-        width: size.width * 0.5,
+        width: size.width * 0.6,
         child: TextField(
+          style: AppThemeData.darkText.headline3,
           controller: controller,
         ),
       ),
+      const SizedBox(width: 20),
       //Pencil Icon
       const Icon(
         FontAwesomeIcons.pencilAlt,
@@ -31,25 +39,72 @@ Widget nameUpdate(
   );
 }
 
-///Name Edit
+///Email Edit
 Widget emailUpdate(
     {required TextEditingController controller, required Size size}) {
   return Container(
     color: Colors.white,
-    width: size.width * 0.8,
+    width: size.width * 0.95,
     child: Row(children: [
+      //Space Between
+      const SizedBox(
+        width: 5,
+      ),
       //Pre Text
       Text(
-        "Email",
-        style: AppThemeData.darkText.subtitle1,
+        "Email:",
+        style: AppThemeData.darkText.headline3,
       ),
+      //Space Between
+      const SizedBox(width: 10),
+      //TextField
+      SizedBox(
+        width: size.width * 0.6,
+        child: TextField(
+          style: AppThemeData.darkText.headline3,
+          controller: controller,
+        ),
+      ),
+      //Space Between
+      const SizedBox(width: 20),
+      //Pencil Icon
+      const Icon(
+        FontAwesomeIcons.pencilAlt,
+        color: Colors.black,
+      )
+    ]),
+  );
+}
+
+//Password Edit
+///Email Edit
+Widget passwordUpdate(
+    {required TextEditingController controller, required Size size}) {
+  return Container(
+    color: Colors.white,
+    width: size.width * 0.95,
+    child: Row(children: [
+      //Space Between
+      const SizedBox(
+        width: 5,
+      ),
+      //Pre Text
+      Text(
+        "Password:",
+        style: AppThemeData.darkText.headline3,
+      ),
+      //Space Between
+      const SizedBox(width: 10),
       //TextField
       SizedBox(
         width: size.width * 0.5,
         child: TextField(
           controller: controller,
+          obscureText: true,
         ),
       ),
+      //Space Between
+      const SizedBox(width: 20),
       //Pencil Icon
       const Icon(
         FontAwesomeIcons.pencilAlt,

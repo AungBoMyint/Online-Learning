@@ -11,36 +11,43 @@ import 'package:online_learning/application/provider/setting_provider.dart';
 import 'package:online_learning/domain/data/theme.dart';
 import 'package:online_learning/presentation/resuable_widgets/setting/profile_update.dart';
 
-class UpdateProfilePage extends HookConsumerWidget {
+class UpdateProfilePage extends ConsumerStatefulWidget {
   const UpdateProfilePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _UpdateProfilePageState createState() => _UpdateProfilePageState();
+}
+
+class _UpdateProfilePageState extends ConsumerState<UpdateProfilePage> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
     final userModal = BlocProvider.of<AuthBloc>(context).state.userModal;
+    _nameController.text = userModal!.userName;
+    _emailController.text = userModal.email;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final userModal = BlocProvider.of<AuthBloc>(context).state.userModal;
+
     final provider = ref.watch(settingProvider);
-    final _nameController = TextEditingController()..text = userModal!.userName;
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-    final GlobalKey _formKey = GlobalKey<FormState>();
     return Scaffold(
-      bottomSheet: Center(
-        child: SizedBox(
-            width: 100,
-            height: 100,
-            child: ElevatedButton(
-              onPressed: () {
-                //TODO: Update Profile
-              },
-              child: Text(
-                "Confirm",
-                style: AppThemeData.lightText.subtitle1,
-              ),
-            )),
-      ),
       body: SafeArea(
         child: Form(
-          key: _formKey,
           child: SizedBox(
             height: size.height,
             width: size.width,
@@ -48,31 +55,67 @@ class UpdateProfilePage extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ///User Circle Avatar
-                  provider.userImage == null
-                      ? CircleAvatar(
-                          radius: 100,
-                          backgroundImage: NetworkImage(userModal.image),
-                          foregroundColor: Colors.black.withOpacity(0.6),
+                  //Space
+                  const SizedBox(height: 20),
+                  Stack(
+                    children: [
+                      ///User Circle Avatar
+                      provider.userImage == null
+                          ? CircleAvatar(
+                              radius: 100,
+                              backgroundImage: NetworkImage(userModal!.image),
+                            )
+                          : CircleAvatar(
+                              radius: 100,
+                              backgroundImage:
+                                  FileImage(File(provider.userImage ?? "")),
+                            ),
+                      CircleAvatar(
+                        radius: 100,
+                        backgroundColor: Colors.black.withOpacity(0.2),
+                        child: Align(
+                          alignment: Alignment.center,
                           child: IconButton(
                             onPressed: () => _getPhoto(context, provider),
-                            icon: const Icon(FontAwesomeIcons.cameraRetro,
-                                color: Colors.white),
-                          ),
-                        )
-                      : CircleAvatar(
-                          radius: 100,
-                          backgroundImage:
-                              FileImage(File(provider.userImage ?? "")),
-                          foregroundColor: Colors.black.withOpacity(0.6),
-                          child: IconButton(
-                            onPressed: () => _getPhoto(context, provider),
-                            icon: const Icon(FontAwesomeIcons.cameraRetro,
-                                color: Colors.white),
+                            icon: const Icon(
+                              FontAwesomeIcons.cameraRetro,
+                              color: Colors.white,
+                              size: 40,
+                            ),
                           ),
                         ),
+                      ),
+                    ],
+                  ),
+
+                  ///Space
+                  const SizedBox(height: 20),
                   /////Name TextFormField
                   nameUpdate(controller: _nameController, size: size),
+                  //Space Between
+                  const SizedBox(height: 10),
+                  emailUpdate(controller: _emailController, size: size),
+                  //Space
+                  const SizedBox(height: 10),
+                  passwordUpdate(controller: _passwordController, size: size),
+                  //Space
+                  const SizedBox(height: 20),
+                  //Confirm Button
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //TODO: Update Profile
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Confirm",
+                          style: AppThemeData.lightText.headline1,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

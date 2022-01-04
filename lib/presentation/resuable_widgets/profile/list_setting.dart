@@ -18,31 +18,46 @@ class ListSettingWidget extends StatelessWidget {
               (item) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: Container(
-                    height: 50,
-                    width: size.width,
-                    color: Colors.white,
-                    child: Center(
-                        child: Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            item.prefixIcon,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            item.text,
-                            style: AppThemeData.darkText.headline3,
-                          ),
-                          Icon(
-                            item.suffixIcon,
-                            color: Colors.black,
-                          ),
-                        ],
-                      ),
-                    )),
+                  child: InkWell(
+                    onTap: () {
+                      //Navigate Each Route
+                      if (item.id == 1) {
+                        Navigator.of(context).pushNamed(
+                          RouteGenerator.updateProfile,
+                        );
+                      }
+                      if (item.id == 2) {
+                        Navigator.of(context).pushNamed(
+                          RouteGenerator.courseUploadPage,
+                        );
+                      }
+                    },
+                    child: Container(
+                      height: 50,
+                      width: size.width,
+                      color: Colors.white,
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              item.prefixIcon,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              item.text,
+                              style: AppThemeData.darkText.headline3,
+                            ),
+                            Icon(
+                              item.suffixIcon,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
+                      )),
+                    ),
                   ),
                 );
               },

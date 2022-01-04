@@ -11,7 +11,9 @@ class CourseProvider extends ChangeNotifier {
   CourseProvider(this._currentUser);
   String? courseTitle;
   String? courseDescription;
-  bool isAdvantace = false;
+  String? courseOverview;
+  String? tag = "Mobile Development";
+  String? type = "Beginner";
   String? image;
   //////////
   Module? moduleObject;
@@ -25,13 +27,21 @@ class CourseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  ///When use select Advantace Option
-  void changeCourseType(int value) {
-    if (value == 3) {
-      isAdvantace = true;
-    } else {
-      isAdvantace = false;
-    }
+  //Add Course Overview
+  void enterCourseOverview(String? value) {
+    courseOverview = value;
+    notifyListeners();
+  }
+
+  ///Change Tag
+  void changeTag(String? value) {
+    tag = value;
+    notifyListeners();
+  }
+
+  //Change Type
+  void changeType(String? value) {
+    type = value;
     notifyListeners();
   }
 
@@ -48,7 +58,7 @@ class CourseProvider extends ChangeNotifier {
       creator: _currentUser.getCurrentUserId()?.displayName,
       description: courseDescription,
       image: image,
-      advanceCource: isAdvantace,
+      advanceCource: false,
     );
     notifyListeners();
   }

@@ -37,8 +37,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i4.FirebaseFirestore>()));
   gh.factory<_i9.CurrentUser>(() => _i9.CurrentUser(get<_i3.FirebaseAuth>()));
   gh.lazySingleton<_i10.FirebaseFunctionParent>(() =>
-      _i11.FirebaseFunctionImplementation(
-          get<_i4.FirebaseFirestore>(), get<_i5.FirebaseStorage>()));
+      _i11.FirebaseFunctionImplementation(get<_i4.FirebaseFirestore>(),
+          get<_i5.FirebaseStorage>(), get<_i3.FirebaseAuth>()));
   gh.factory<_i12.AuthBloc>(() => _i12.AuthBloc(get<_i7.AuthParent>()));
   gh.factory<_i13.DataBloc>(
       () => _i13.DataBloc(get<_i10.FirebaseFunctionParent>()));

@@ -104,6 +104,7 @@ class DataBloc extends Bloc<DataEvent, DataState> {
         await _firebaseFunction
             .updateUserProfile(
           userModal: event.userModal,
+          password: event.password,
         )
             .then((value) {
           emit(state.copyWith(
@@ -114,6 +115,23 @@ class DataBloc extends Bloc<DataEvent, DataState> {
       },
       transformer: sequential(),
     );
+
+    ///Update Course Event
+    on<UpdateCourse>((event, emit) async {
+      emit(state.copyWith(
+        isLoadingUpdateCourse: true,
+        failureOrSuccess: none(),
+      ));
+      await _firebaseFunction
+          .updateCourse(
+            course: event.course,
+            courseImage: event.courseImage,
+          )
+          .then((value) => emit(state.copyWith(
+                isLoadingUpdateCourse: false,
+                failureOrSuccess: Some(value),
+              )));
+    }, transformer: sequential());
 
     ////Getting Firebase Firestore DATA
     on<ListenAllCourse>((event, emit) async {

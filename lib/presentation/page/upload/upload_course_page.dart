@@ -1,12 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' hide Provider;
-import 'package:image_picker/image_picker.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
-import 'package:online_learning/application/provider/course_provider.dart';
 import 'package:online_learning/application/provider/provider.dart';
 import 'package:online_learning/domain/data/theme.dart';
+import 'package:online_learning/domain/json/course/course.dart';
 import 'package:online_learning/presentation/page/upload/course_widget.dart';
 
 class UploadCoursePage extends ConsumerWidget {
@@ -37,30 +37,67 @@ class UploadCoursePage extends ConsumerWidget {
       },
       child: WillPopScope(
         onWillPop: () async {
-          ////We need to Clear All Data
-          /* provider.course = null;
-          provider.module = null;
-          provider.lesson = null;
-          provider.image = null;
-          provider.lessonImageOrDescriptionOrVideoList = [];
-          return true;*/
-          return true;
+          final Completer<bool> _completer = Completer<bool>();
+          if (provider.courseTitle != null ||
+              provider.courseDescription != null ||
+              provider.courseOverview != null ||
+              provider.image != null) {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Discard Lesson!"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        _completer.complete(false);
+                      },
+                      child: const Text("Keep Adding"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        _completer.complete(true);
+                      },
+                      child: const Text("Discard"),
+                    )
+                  ],
+                );
+              },
+            );
+          } else {
+            _completer.complete(true);
+          }
+          return _completer.future;
         },
         child: Scaffold(
-          bottomSheet: ElevatedButton(
-            onPressed: () {
-              //TODO: Upload Course Into Firebase
-            },
-            child: Text(
-              "Upload",
-              style: AppThemeData.darkText.subtitle1,
-            ),
-          ),
           appBar: AppBar(
-              title: Text(
-            "Upload Your Course",
-            style: AppThemeData.darkText.headline1,
-          )),
+            title: Text(
+              "Create Course!",
+              style: AppThemeData.darkText.headline1,
+            ),
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blue, shape: RoundedRectangleBorder()),
+                onPressed: () {
+                  provider.uploadCourse();
+                  //Upload Course Into Firebase
+                  BlocProvider.of<DataBloc>(context).add(UploadCourseToFirebase(
+                      course: provider.course ?? Course.empty()));
+
+                  //Pop this route
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  "Upload",
+                  style: AppThemeData.darkText.subtitle1!
+                      .copyWith(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
           body: const CourseWidget(),
         ),
       ),

@@ -28,7 +28,14 @@ class DataEvent with _$DataEvent {
   ///Update User Profile
   const factory DataEvent.updateUserProfile({
     required UserModal userModal,
+    required String password,
   }) = UpdateUserProfile;
+
+  ////Update Course
+  const factory DataEvent.updateCourse({
+    required Course course,
+    required String? courseImage,
+  }) = UpdateCourse;
 
   /////GET FROM COLLECTION AND DOCUMENT
   const factory DataEvent.listenAllCourse() = ListenAllCourse;

@@ -12,11 +12,14 @@ class Course with _$Course {
   const factory Course({
     required String id,
     required String? courseName,
-    required String? creator,
     required String? description,
-    required bool? advanceCource,
+    required String? overview,
+    required String? type,
+    required String? tag,
     required String? image,
-    required String ownerId,
+    required int learners,
+    required int rating,
+    required int dateTime,
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
@@ -24,10 +27,13 @@ class Course with _$Course {
   factory Course.empty() => Course(
         id: Uuid().v1(),
         courseName: null,
-        creator: null,
         description: null,
-        advanceCource: null,
+        overview: null,
         image: null,
-        ownerId: getIt<CurrentUser>().getCurrentUserId()!.uid,
+        type: null,
+        tag: null,
+        learners: 0,
+        rating: 0,
+        dateTime: DateTime.now().millisecondsSinceEpoch,
       );
 }

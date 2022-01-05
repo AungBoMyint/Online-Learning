@@ -48,9 +48,19 @@ class _$DataEventTearOff {
     );
   }
 
-  UpdateUserProfile updateUserProfile({required UserModal userModal}) {
+  UpdateUserProfile updateUserProfile(
+      {required UserModal userModal, required String password}) {
     return UpdateUserProfile(
       userModal: userModal,
+      password: password,
+    );
+  }
+
+  UpdateCourse updateCourse(
+      {required Course course, required String? courseImage}) {
+    return UpdateCourse(
+      course: course,
+      courseImage: courseImage,
     );
   }
 
@@ -111,7 +121,9 @@ mixin _$DataEvent {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -131,7 +143,8 @@ mixin _$DataEvent {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -150,7 +163,8 @@ mixin _$DataEvent {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -172,6 +186,7 @@ mixin _$DataEvent {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -194,6 +209,7 @@ mixin _$DataEvent {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -214,6 +230,7 @@ mixin _$DataEvent {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -326,7 +343,9 @@ class _$UploadCourseToFirebase implements UploadCourseToFirebase {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -349,7 +368,8 @@ class _$UploadCourseToFirebase implements UploadCourseToFirebase {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -371,7 +391,8 @@ class _$UploadCourseToFirebase implements UploadCourseToFirebase {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -399,6 +420,7 @@ class _$UploadCourseToFirebase implements UploadCourseToFirebase {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -424,6 +446,7 @@ class _$UploadCourseToFirebase implements UploadCourseToFirebase {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -447,6 +470,7 @@ class _$UploadCourseToFirebase implements UploadCourseToFirebase {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -568,7 +592,9 @@ class _$UploadModuleToFirebase implements UploadModuleToFirebase {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -591,7 +617,8 @@ class _$UploadModuleToFirebase implements UploadModuleToFirebase {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -613,7 +640,8 @@ class _$UploadModuleToFirebase implements UploadModuleToFirebase {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -641,6 +669,7 @@ class _$UploadModuleToFirebase implements UploadModuleToFirebase {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -666,6 +695,7 @@ class _$UploadModuleToFirebase implements UploadModuleToFirebase {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -689,6 +719,7 @@ class _$UploadModuleToFirebase implements UploadModuleToFirebase {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -813,7 +844,9 @@ class _$UploadLessonToFirebase implements UploadLessonToFirebase {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -836,7 +869,8 @@ class _$UploadLessonToFirebase implements UploadLessonToFirebase {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -858,7 +892,8 @@ class _$UploadLessonToFirebase implements UploadLessonToFirebase {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -886,6 +921,7 @@ class _$UploadLessonToFirebase implements UploadLessonToFirebase {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -911,6 +947,7 @@ class _$UploadLessonToFirebase implements UploadLessonToFirebase {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -934,6 +971,7 @@ class _$UploadLessonToFirebase implements UploadLessonToFirebase {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1054,7 +1092,9 @@ class _$UploadLessonImageOrVideoOrDescription
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -1077,7 +1117,8 @@ class _$UploadLessonImageOrVideoOrDescription
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1099,7 +1140,8 @@ class _$UploadLessonImageOrVideoOrDescription
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1127,6 +1169,7 @@ class _$UploadLessonImageOrVideoOrDescription
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -1152,6 +1195,7 @@ class _$UploadLessonImageOrVideoOrDescription
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1175,6 +1219,7 @@ class _$UploadLessonImageOrVideoOrDescription
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1212,7 +1257,9 @@ abstract class $UpdateUserProfileCopyWith<$Res> {
   factory $UpdateUserProfileCopyWith(
           UpdateUserProfile value, $Res Function(UpdateUserProfile) then) =
       _$UpdateUserProfileCopyWithImpl<$Res>;
-  $Res call({UserModal userModal});
+  $Res call({UserModal userModal, String password});
+
+  $UserModalCopyWith<$Res> get userModal;
 }
 
 /// @nodoc
@@ -1229,27 +1276,41 @@ class _$UpdateUserProfileCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userModal = freezed,
+    Object? password = freezed,
   }) {
     return _then(UpdateUserProfile(
       userModal: userModal == freezed
           ? _value.userModal
           : userModal // ignore: cast_nullable_to_non_nullable
               as UserModal,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
+  }
+
+  @override
+  $UserModalCopyWith<$Res> get userModal {
+    return $UserModalCopyWith<$Res>(_value.userModal, (value) {
+      return _then(_value.copyWith(userModal: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$UpdateUserProfile implements UpdateUserProfile {
-  const _$UpdateUserProfile({required this.userModal});
+  const _$UpdateUserProfile({required this.userModal, required this.password});
 
   @override
   final UserModal userModal;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'DataEvent.updateUserProfile(userModal: $userModal)';
+    return 'DataEvent.updateUserProfile(userModal: $userModal, password: $password)';
   }
 
   @override
@@ -1258,11 +1319,13 @@ class _$UpdateUserProfile implements UpdateUserProfile {
         (other.runtimeType == runtimeType &&
             other is UpdateUserProfile &&
             (identical(other.userModal, userModal) ||
-                other.userModal == userModal));
+                other.userModal == userModal) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userModal);
+  int get hashCode => Object.hash(runtimeType, userModal, password);
 
   @JsonKey(ignore: true)
   @override
@@ -1280,7 +1343,9 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -1290,7 +1355,7 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     required TResult Function(List<Course> courseList)
         emitCurrentUserCourseListStream,
   }) {
-    return updateUserProfile(userModal);
+    return updateUserProfile(userModal, password);
   }
 
   @override
@@ -1303,7 +1368,8 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1312,7 +1378,7 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     TResult Function(List<Course> courseList)? emitCourseListStream,
     TResult Function(List<Course> courseList)? emitCurrentUserCourseListStream,
   }) {
-    return updateUserProfile?.call(userModal);
+    return updateUserProfile?.call(userModal, password);
   }
 
   @override
@@ -1325,7 +1391,8 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1336,7 +1403,7 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     required TResult orElse(),
   }) {
     if (updateUserProfile != null) {
-      return updateUserProfile(userModal);
+      return updateUserProfile(userModal, password);
     }
     return orElse();
   }
@@ -1353,6 +1420,7 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -1378,6 +1446,7 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1401,6 +1470,7 @@ class _$UpdateUserProfile implements UpdateUserProfile {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1421,12 +1491,261 @@ class _$UpdateUserProfile implements UpdateUserProfile {
 }
 
 abstract class UpdateUserProfile implements DataEvent {
-  const factory UpdateUserProfile({required UserModal userModal}) =
-      _$UpdateUserProfile;
+  const factory UpdateUserProfile(
+      {required UserModal userModal,
+      required String password}) = _$UpdateUserProfile;
 
   UserModal get userModal;
+  String get password;
   @JsonKey(ignore: true)
   $UpdateUserProfileCopyWith<UpdateUserProfile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateCourseCopyWith<$Res> {
+  factory $UpdateCourseCopyWith(
+          UpdateCourse value, $Res Function(UpdateCourse) then) =
+      _$UpdateCourseCopyWithImpl<$Res>;
+  $Res call({Course course, String? courseImage});
+
+  $CourseCopyWith<$Res> get course;
+}
+
+/// @nodoc
+class _$UpdateCourseCopyWithImpl<$Res> extends _$DataEventCopyWithImpl<$Res>
+    implements $UpdateCourseCopyWith<$Res> {
+  _$UpdateCourseCopyWithImpl(
+      UpdateCourse _value, $Res Function(UpdateCourse) _then)
+      : super(_value, (v) => _then(v as UpdateCourse));
+
+  @override
+  UpdateCourse get _value => super._value as UpdateCourse;
+
+  @override
+  $Res call({
+    Object? course = freezed,
+    Object? courseImage = freezed,
+  }) {
+    return _then(UpdateCourse(
+      course: course == freezed
+          ? _value.course
+          : course // ignore: cast_nullable_to_non_nullable
+              as Course,
+      courseImage: courseImage == freezed
+          ? _value.courseImage
+          : courseImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  @override
+  $CourseCopyWith<$Res> get course {
+    return $CourseCopyWith<$Res>(_value.course, (value) {
+      return _then(_value.copyWith(course: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$UpdateCourse implements UpdateCourse {
+  const _$UpdateCourse({required this.course, required this.courseImage});
+
+  @override
+  final Course course;
+  @override
+  final String? courseImage;
+
+  @override
+  String toString() {
+    return 'DataEvent.updateCourse(course: $course, courseImage: $courseImage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdateCourse &&
+            (identical(other.course, course) || other.course == course) &&
+            (identical(other.courseImage, courseImage) ||
+                other.courseImage == courseImage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, course, courseImage);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateCourseCopyWith<UpdateCourse> get copyWith =>
+      _$UpdateCourseCopyWithImpl<UpdateCourse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Course course) uploadCourseToFirebase,
+    required TResult Function(Module module, String courseId)
+        uploadModuleToFirebase,
+    required TResult Function(Lesson listLesson, String moduleId)
+        uploadLessonToFirebase,
+    required TResult Function(
+            List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
+        uploadLessonImageOrVideoOrDescription,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
+    required TResult Function() listenAllCourse,
+    required TResult Function() listenCurrentUserOwnCourses,
+    required TResult Function(String courseId) getCurrentCourseModules,
+    required TResult Function(String moduleId) getCurrentModuleLessons,
+    required TResult Function(String lessonId) getCurrentLessonLessonContents,
+    required TResult Function(List<Course> courseList) emitCourseListStream,
+    required TResult Function(List<Course> courseList)
+        emitCurrentUserCourseListStream,
+  }) {
+    return updateCourse(course, courseImage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Course course)? uploadCourseToFirebase,
+    TResult Function(Module module, String courseId)? uploadModuleToFirebase,
+    TResult Function(Lesson listLesson, String moduleId)?
+        uploadLessonToFirebase,
+    TResult Function(
+            List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
+        uploadLessonImageOrVideoOrDescription,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
+    TResult Function()? listenAllCourse,
+    TResult Function()? listenCurrentUserOwnCourses,
+    TResult Function(String courseId)? getCurrentCourseModules,
+    TResult Function(String moduleId)? getCurrentModuleLessons,
+    TResult Function(String lessonId)? getCurrentLessonLessonContents,
+    TResult Function(List<Course> courseList)? emitCourseListStream,
+    TResult Function(List<Course> courseList)? emitCurrentUserCourseListStream,
+  }) {
+    return updateCourse?.call(course, courseImage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Course course)? uploadCourseToFirebase,
+    TResult Function(Module module, String courseId)? uploadModuleToFirebase,
+    TResult Function(Lesson listLesson, String moduleId)?
+        uploadLessonToFirebase,
+    TResult Function(
+            List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
+        uploadLessonImageOrVideoOrDescription,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
+    TResult Function()? listenAllCourse,
+    TResult Function()? listenCurrentUserOwnCourses,
+    TResult Function(String courseId)? getCurrentCourseModules,
+    TResult Function(String moduleId)? getCurrentModuleLessons,
+    TResult Function(String lessonId)? getCurrentLessonLessonContents,
+    TResult Function(List<Course> courseList)? emitCourseListStream,
+    TResult Function(List<Course> courseList)? emitCurrentUserCourseListStream,
+    required TResult orElse(),
+  }) {
+    if (updateCourse != null) {
+      return updateCourse(course, courseImage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UploadCourseToFirebase value)
+        uploadCourseToFirebase,
+    required TResult Function(UploadModuleToFirebase value)
+        uploadModuleToFirebase,
+    required TResult Function(UploadLessonToFirebase value)
+        uploadLessonToFirebase,
+    required TResult Function(UploadLessonImageOrVideoOrDescription value)
+        uploadLessonImageOrVideoOrDescription,
+    required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
+    required TResult Function(ListenAllCourse value) listenAllCourse,
+    required TResult Function(ListenCurrentUserOwnCourse value)
+        listenCurrentUserOwnCourses,
+    required TResult Function(GetCurrentCourseModules value)
+        getCurrentCourseModules,
+    required TResult Function(GetCurrentModuleLessons value)
+        getCurrentModuleLessons,
+    required TResult Function(GetCurrentLessonLessonContents value)
+        getCurrentLessonLessonContents,
+    required TResult Function(EmitCourseListStream value) emitCourseListStream,
+    required TResult Function(EmitCurrentUserCourseListStream value)
+        emitCurrentUserCourseListStream,
+  }) {
+    return updateCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(UploadCourseToFirebase value)? uploadCourseToFirebase,
+    TResult Function(UploadModuleToFirebase value)? uploadModuleToFirebase,
+    TResult Function(UploadLessonToFirebase value)? uploadLessonToFirebase,
+    TResult Function(UploadLessonImageOrVideoOrDescription value)?
+        uploadLessonImageOrVideoOrDescription,
+    TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
+    TResult Function(ListenAllCourse value)? listenAllCourse,
+    TResult Function(ListenCurrentUserOwnCourse value)?
+        listenCurrentUserOwnCourses,
+    TResult Function(GetCurrentCourseModules value)? getCurrentCourseModules,
+    TResult Function(GetCurrentModuleLessons value)? getCurrentModuleLessons,
+    TResult Function(GetCurrentLessonLessonContents value)?
+        getCurrentLessonLessonContents,
+    TResult Function(EmitCourseListStream value)? emitCourseListStream,
+    TResult Function(EmitCurrentUserCourseListStream value)?
+        emitCurrentUserCourseListStream,
+  }) {
+    return updateCourse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UploadCourseToFirebase value)? uploadCourseToFirebase,
+    TResult Function(UploadModuleToFirebase value)? uploadModuleToFirebase,
+    TResult Function(UploadLessonToFirebase value)? uploadLessonToFirebase,
+    TResult Function(UploadLessonImageOrVideoOrDescription value)?
+        uploadLessonImageOrVideoOrDescription,
+    TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
+    TResult Function(ListenAllCourse value)? listenAllCourse,
+    TResult Function(ListenCurrentUserOwnCourse value)?
+        listenCurrentUserOwnCourses,
+    TResult Function(GetCurrentCourseModules value)? getCurrentCourseModules,
+    TResult Function(GetCurrentModuleLessons value)? getCurrentModuleLessons,
+    TResult Function(GetCurrentLessonLessonContents value)?
+        getCurrentLessonLessonContents,
+    TResult Function(EmitCourseListStream value)? emitCourseListStream,
+    TResult Function(EmitCurrentUserCourseListStream value)?
+        emitCurrentUserCourseListStream,
+    required TResult orElse(),
+  }) {
+    if (updateCourse != null) {
+      return updateCourse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateCourse implements DataEvent {
+  const factory UpdateCourse(
+      {required Course course, required String? courseImage}) = _$UpdateCourse;
+
+  Course get course;
+  String? get courseImage;
+  @JsonKey(ignore: true)
+  $UpdateCourseCopyWith<UpdateCourse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1478,7 +1797,9 @@ class _$ListenAllCourse implements ListenAllCourse {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -1501,7 +1822,8 @@ class _$ListenAllCourse implements ListenAllCourse {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1523,7 +1845,8 @@ class _$ListenAllCourse implements ListenAllCourse {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1551,6 +1874,7 @@ class _$ListenAllCourse implements ListenAllCourse {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -1576,6 +1900,7 @@ class _$ListenAllCourse implements ListenAllCourse {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1599,6 +1924,7 @@ class _$ListenAllCourse implements ListenAllCourse {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1673,7 +1999,9 @@ class _$ListenCurrentUserOwnCourse implements ListenCurrentUserOwnCourse {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -1696,7 +2024,8 @@ class _$ListenCurrentUserOwnCourse implements ListenCurrentUserOwnCourse {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1718,7 +2047,8 @@ class _$ListenCurrentUserOwnCourse implements ListenCurrentUserOwnCourse {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1746,6 +2076,7 @@ class _$ListenCurrentUserOwnCourse implements ListenCurrentUserOwnCourse {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -1771,6 +2102,7 @@ class _$ListenCurrentUserOwnCourse implements ListenCurrentUserOwnCourse {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1794,6 +2126,7 @@ class _$ListenCurrentUserOwnCourse implements ListenCurrentUserOwnCourse {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -1891,7 +2224,9 @@ class _$GetCurrentCourseModules implements GetCurrentCourseModules {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -1914,7 +2249,8 @@ class _$GetCurrentCourseModules implements GetCurrentCourseModules {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1936,7 +2272,8 @@ class _$GetCurrentCourseModules implements GetCurrentCourseModules {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -1964,6 +2301,7 @@ class _$GetCurrentCourseModules implements GetCurrentCourseModules {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -1989,6 +2327,7 @@ class _$GetCurrentCourseModules implements GetCurrentCourseModules {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2012,6 +2351,7 @@ class _$GetCurrentCourseModules implements GetCurrentCourseModules {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2115,7 +2455,9 @@ class _$GetCurrentModuleLessons implements GetCurrentModuleLessons {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -2138,7 +2480,8 @@ class _$GetCurrentModuleLessons implements GetCurrentModuleLessons {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2160,7 +2503,8 @@ class _$GetCurrentModuleLessons implements GetCurrentModuleLessons {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2188,6 +2532,7 @@ class _$GetCurrentModuleLessons implements GetCurrentModuleLessons {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -2213,6 +2558,7 @@ class _$GetCurrentModuleLessons implements GetCurrentModuleLessons {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2236,6 +2582,7 @@ class _$GetCurrentModuleLessons implements GetCurrentModuleLessons {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2343,7 +2690,9 @@ class _$GetCurrentLessonLessonContents
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -2366,7 +2715,8 @@ class _$GetCurrentLessonLessonContents
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2388,7 +2738,8 @@ class _$GetCurrentLessonLessonContents
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2416,6 +2767,7 @@ class _$GetCurrentLessonLessonContents
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -2441,6 +2793,7 @@ class _$GetCurrentLessonLessonContents
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2464,6 +2817,7 @@ class _$GetCurrentLessonLessonContents
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2568,7 +2922,9 @@ class _$EmitCourseListStream implements EmitCourseListStream {
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -2591,7 +2947,8 @@ class _$EmitCourseListStream implements EmitCourseListStream {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2613,7 +2970,8 @@ class _$EmitCourseListStream implements EmitCourseListStream {
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2641,6 +2999,7 @@ class _$EmitCourseListStream implements EmitCourseListStream {
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -2666,6 +3025,7 @@ class _$EmitCourseListStream implements EmitCourseListStream {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2689,6 +3049,7 @@ class _$EmitCourseListStream implements EmitCourseListStream {
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2797,7 +3158,9 @@ class _$EmitCurrentUserCourseListStream
     required TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)
         uploadLessonImageOrVideoOrDescription,
-    required TResult Function(UserModal userModal) updateUserProfile,
+    required TResult Function(UserModal userModal, String password)
+        updateUserProfile,
+    required TResult Function(Course course, String? courseImage) updateCourse,
     required TResult Function() listenAllCourse,
     required TResult Function() listenCurrentUserOwnCourses,
     required TResult Function(String courseId) getCurrentCourseModules,
@@ -2820,7 +3183,8 @@ class _$EmitCurrentUserCourseListStream
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2842,7 +3206,8 @@ class _$EmitCurrentUserCourseListStream
     TResult Function(
             List<LessonImageOrDescriptionOrVideo> lesson, String lessonId)?
         uploadLessonImageOrVideoOrDescription,
-    TResult Function(UserModal userModal)? updateUserProfile,
+    TResult Function(UserModal userModal, String password)? updateUserProfile,
+    TResult Function(Course course, String? courseImage)? updateCourse,
     TResult Function()? listenAllCourse,
     TResult Function()? listenCurrentUserOwnCourses,
     TResult Function(String courseId)? getCurrentCourseModules,
@@ -2870,6 +3235,7 @@ class _$EmitCurrentUserCourseListStream
     required TResult Function(UploadLessonImageOrVideoOrDescription value)
         uploadLessonImageOrVideoOrDescription,
     required TResult Function(UpdateUserProfile value) updateUserProfile,
+    required TResult Function(UpdateCourse value) updateCourse,
     required TResult Function(ListenAllCourse value) listenAllCourse,
     required TResult Function(ListenCurrentUserOwnCourse value)
         listenCurrentUserOwnCourses,
@@ -2895,6 +3261,7 @@ class _$EmitCurrentUserCourseListStream
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2918,6 +3285,7 @@ class _$EmitCurrentUserCourseListStream
     TResult Function(UploadLessonImageOrVideoOrDescription value)?
         uploadLessonImageOrVideoOrDescription,
     TResult Function(UpdateUserProfile value)? updateUserProfile,
+    TResult Function(UpdateCourse value)? updateCourse,
     TResult Function(ListenAllCourse value)? listenAllCourse,
     TResult Function(ListenCurrentUserOwnCourse value)?
         listenCurrentUserOwnCourses,
@@ -2954,6 +3322,7 @@ class _$DataStateTearOff {
   _DataState call(
       {required bool isCourseUpload,
       required bool isLoadingUpdateProfile,
+      required bool isLoadingUpdateCourse,
       required List<Course>? courseList,
       required List<Course>? currentUserCourseList,
       required List<Module>? moduleList,
@@ -2963,6 +3332,7 @@ class _$DataStateTearOff {
     return _DataState(
       isCourseUpload: isCourseUpload,
       isLoadingUpdateProfile: isLoadingUpdateProfile,
+      isLoadingUpdateCourse: isLoadingUpdateCourse,
       courseList: courseList,
       currentUserCourseList: currentUserCourseList,
       moduleList: moduleList,
@@ -2980,6 +3350,7 @@ const $DataState = _$DataStateTearOff();
 mixin _$DataState {
   bool get isCourseUpload => throw _privateConstructorUsedError;
   bool get isLoadingUpdateProfile => throw _privateConstructorUsedError;
+  bool get isLoadingUpdateCourse => throw _privateConstructorUsedError;
   List<Course>? get courseList => throw _privateConstructorUsedError;
   List<Course>? get currentUserCourseList => throw _privateConstructorUsedError;
   List<Module>? get moduleList => throw _privateConstructorUsedError;
@@ -3001,6 +3372,7 @@ abstract class $DataStateCopyWith<$Res> {
   $Res call(
       {bool isCourseUpload,
       bool isLoadingUpdateProfile,
+      bool isLoadingUpdateCourse,
       List<Course>? courseList,
       List<Course>? currentUserCourseList,
       List<Module>? moduleList,
@@ -3021,6 +3393,7 @@ class _$DataStateCopyWithImpl<$Res> implements $DataStateCopyWith<$Res> {
   $Res call({
     Object? isCourseUpload = freezed,
     Object? isLoadingUpdateProfile = freezed,
+    Object? isLoadingUpdateCourse = freezed,
     Object? courseList = freezed,
     Object? currentUserCourseList = freezed,
     Object? moduleList = freezed,
@@ -3036,6 +3409,10 @@ class _$DataStateCopyWithImpl<$Res> implements $DataStateCopyWith<$Res> {
       isLoadingUpdateProfile: isLoadingUpdateProfile == freezed
           ? _value.isLoadingUpdateProfile
           : isLoadingUpdateProfile // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingUpdateCourse: isLoadingUpdateCourse == freezed
+          ? _value.isLoadingUpdateCourse
+          : isLoadingUpdateCourse // ignore: cast_nullable_to_non_nullable
               as bool,
       courseList: courseList == freezed
           ? _value.courseList
@@ -3074,6 +3451,7 @@ abstract class _$DataStateCopyWith<$Res> implements $DataStateCopyWith<$Res> {
   $Res call(
       {bool isCourseUpload,
       bool isLoadingUpdateProfile,
+      bool isLoadingUpdateCourse,
       List<Course>? courseList,
       List<Course>? currentUserCourseList,
       List<Module>? moduleList,
@@ -3095,6 +3473,7 @@ class __$DataStateCopyWithImpl<$Res> extends _$DataStateCopyWithImpl<$Res>
   $Res call({
     Object? isCourseUpload = freezed,
     Object? isLoadingUpdateProfile = freezed,
+    Object? isLoadingUpdateCourse = freezed,
     Object? courseList = freezed,
     Object? currentUserCourseList = freezed,
     Object? moduleList = freezed,
@@ -3110,6 +3489,10 @@ class __$DataStateCopyWithImpl<$Res> extends _$DataStateCopyWithImpl<$Res>
       isLoadingUpdateProfile: isLoadingUpdateProfile == freezed
           ? _value.isLoadingUpdateProfile
           : isLoadingUpdateProfile // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoadingUpdateCourse: isLoadingUpdateCourse == freezed
+          ? _value.isLoadingUpdateCourse
+          : isLoadingUpdateCourse // ignore: cast_nullable_to_non_nullable
               as bool,
       courseList: courseList == freezed
           ? _value.courseList
@@ -3145,6 +3528,7 @@ class _$_DataState implements _DataState {
   const _$_DataState(
       {required this.isCourseUpload,
       required this.isLoadingUpdateProfile,
+      required this.isLoadingUpdateCourse,
       required this.courseList,
       required this.currentUserCourseList,
       required this.moduleList,
@@ -3156,6 +3540,8 @@ class _$_DataState implements _DataState {
   final bool isCourseUpload;
   @override
   final bool isLoadingUpdateProfile;
+  @override
+  final bool isLoadingUpdateCourse;
   @override
   final List<Course>? courseList;
   @override
@@ -3171,7 +3557,7 @@ class _$_DataState implements _DataState {
 
   @override
   String toString() {
-    return 'DataState(isCourseUpload: $isCourseUpload, isLoadingUpdateProfile: $isLoadingUpdateProfile, courseList: $courseList, currentUserCourseList: $currentUserCourseList, moduleList: $moduleList, lessonList: $lessonList, lessonContentList: $lessonContentList, failureOrSuccess: $failureOrSuccess)';
+    return 'DataState(isCourseUpload: $isCourseUpload, isLoadingUpdateProfile: $isLoadingUpdateProfile, isLoadingUpdateCourse: $isLoadingUpdateCourse, courseList: $courseList, currentUserCourseList: $currentUserCourseList, moduleList: $moduleList, lessonList: $lessonList, lessonContentList: $lessonContentList, failureOrSuccess: $failureOrSuccess)';
   }
 
   @override
@@ -3183,6 +3569,8 @@ class _$_DataState implements _DataState {
                 other.isCourseUpload == isCourseUpload) &&
             (identical(other.isLoadingUpdateProfile, isLoadingUpdateProfile) ||
                 other.isLoadingUpdateProfile == isLoadingUpdateProfile) &&
+            (identical(other.isLoadingUpdateCourse, isLoadingUpdateCourse) ||
+                other.isLoadingUpdateCourse == isLoadingUpdateCourse) &&
             const DeepCollectionEquality()
                 .equals(other.courseList, courseList) &&
             const DeepCollectionEquality()
@@ -3202,6 +3590,7 @@ class _$_DataState implements _DataState {
       runtimeType,
       isCourseUpload,
       isLoadingUpdateProfile,
+      isLoadingUpdateCourse,
       const DeepCollectionEquality().hash(courseList),
       const DeepCollectionEquality().hash(currentUserCourseList),
       const DeepCollectionEquality().hash(moduleList),
@@ -3219,6 +3608,7 @@ abstract class _DataState implements DataState {
   const factory _DataState(
           {required bool isCourseUpload,
           required bool isLoadingUpdateProfile,
+          required bool isLoadingUpdateCourse,
           required List<Course>? courseList,
           required List<Course>? currentUserCourseList,
           required List<Module>? moduleList,
@@ -3231,6 +3621,8 @@ abstract class _DataState implements DataState {
   bool get isCourseUpload;
   @override
   bool get isLoadingUpdateProfile;
+  @override
+  bool get isLoadingUpdateCourse;
   @override
   List<Course>? get courseList;
   @override

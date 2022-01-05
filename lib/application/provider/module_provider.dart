@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_learning/application/provider/course_provider.dart';
-import 'package:online_learning/domain/json/course/course.dart';
 import 'package:online_learning/domain/json/course/module.dart';
 
 class ModuleProvider extends ChangeNotifier {
-  final CourseProvider courseProvider;
-  ModuleProvider(this.courseProvider);
+  ModuleProvider();
 
   String? moduleText;
   Module? module;
@@ -35,7 +32,6 @@ class ModuleProvider extends ChangeNotifier {
     if (moduleText != null) {
       if (moduleText!.length > 5) {
         module = Module.empty().copyWith(moduleTitle: moduleText);
-        courseProvider.moduleObject = module;
       }
     }
     notifyListeners();

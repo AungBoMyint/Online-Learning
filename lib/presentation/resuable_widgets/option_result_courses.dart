@@ -168,27 +168,13 @@ class OptionResultCourses extends ConsumerWidget {
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                              children: [
+                                              children: const [
                                                 ///Creator
-                                                const Text("Creator",
+                                                Text("Creator",
                                                     maxLines: 2,
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
-                                                      color: Colors.black54,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 15,
-                                                    )),
-
-                                                ///Creator Name
-                                                Text(
-                                                    courseList[index].creator ??
-                                                        "",
-                                                    maxLines: 2,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: const TextStyle(
                                                       color: Colors.black54,
                                                       fontWeight:
                                                           FontWeight.bold,

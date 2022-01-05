@@ -17,100 +17,197 @@ class CourseWidget extends ConsumerWidget {
     final size = MediaQuery.of(context).size;
     return Form(
       child: ListView(
+        shrinkWrap: true,
         children: [
-          ///DropDown Tag
-          DropdownButton<String>(
-            icon: const Icon(
-              FontAwesomeIcons.caretDown,
-              color: Colors.black,
-            ),
-            //value: provider.tag,
-            onChanged: (value) => provider.changeTag(value),
-            items: [
-              "Mobile Development",
-              "Web Development",
-              "Machine Learning",
-              "Internet",
-              "Markting",
-              "Computer Science"
-            ].map<DropdownMenuItem<String>>((item) {
-              return DropdownMenuItem<String>(
-                child: Text(item),
-              );
-            }).toList(),
-          ),
-          //DropDown Type
-          DropdownButton<String>(
-            icon: const Icon(
-              FontAwesomeIcons.caretDown,
-              color: Colors.black,
-            ),
-            //value: provider.tag,
-            onChanged: (value) => provider.changeType(value),
-            items: [
-              "Beginner",
-              "Intermediate",
-              "Advance",
-            ].map<DropdownMenuItem<String>>((item) {
-              return DropdownMenuItem<String>(
-                child: Text(item),
-              );
-            }).toList(),
+          //Space
+          const SizedBox(height: 5),
+          //DropDown Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ///DropDown Tag
+              Card(
+                color: Colors.white,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                )),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: DropdownButton<String>(
+                    underline: const SizedBox(height: 0),
+                    value: provider.tag,
+                    icon: const Icon(
+                      FontAwesomeIcons.caretDown,
+                      color: Colors.black,
+                    ),
+                    //value: provider.tag,
+                    onChanged: (value) => provider.changeTag(value),
+                    items: [
+                      "Mobile Development",
+                      "Web Development",
+                      "Machine Learning",
+                      "Internet",
+                      "Markting",
+                      "Computer Science"
+                    ].map<DropdownMenuItem<String>>((item) {
+                      return DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(item,
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            )),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+              //DropDown Type
+              Card(
+                color: Colors.white,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                )),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: DropdownButton<String>(
+                    underline: const SizedBox(height: 0),
+                    value: provider.type,
+                    icon: const Icon(
+                      FontAwesomeIcons.caretDown,
+                      color: Colors.black,
+                    ),
+                    //value: provider.tag,
+                    onChanged: (valuePut) => provider.changeType(valuePut),
+                    items: [
+                      "Beginner",
+                      "Intermediate",
+                      "Advance",
+                    ].map<DropdownMenuItem<String>>((item) {
+                      return DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(item,
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            )),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+            ],
           ),
           //Couser Title
-          TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter Title",
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+            child: TextField(
+              decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Title",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal,
+                  )),
+              maxLines: null,
+              onChanged: (value) => provider.enterCourseTitle(value),
             ),
-            maxLines: 2,
-            onChanged: (value) => provider.enterCourseTitle(value),
           ),
           //Couse Description
-          TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter Description",
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+            child: TextField(
+              style: const TextStyle(
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+                fontSize: 16,
+              ),
+              decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Description",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal,
+                  )),
+              maxLines: null,
+              onChanged: (value) => provider.enterCourseDescription(value),
             ),
-            maxLines: 2,
-            onChanged: (value) => provider.enterCourseDescription(value),
           ),
           //Couse Overview
-          TextField(
-            decoration: const InputDecoration(
-              hintText: "Enter Overview",
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+            child: TextField(
+              style: const TextStyle(
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+                fontSize: 16,
+              ),
+              decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Overview",
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal,
+                  )),
+              maxLines: null,
+              onChanged: (value) => provider.enterCourseOverview(value),
             ),
-            maxLines: 2,
-            onChanged: (value) => provider.enterCourseOverview(value),
+          ),
+          //Space Between
+          const SizedBox(
+            height: 10,
           ),
           //Couser Image
-          provider.image == null
-              ? Stack(children: [
-                  SizedBox(
-                    height: size.height * 0.3,
-                    width: size.width * 0.5,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
+          Stack(children: [
+            Center(
+              child: InkWell(
+                onTap: () => _getPhoto(context, provider),
+                child: SizedBox(
+                  height: size.height * 0.3,
+                  width: size.width * 0.7,
+                  child: provider.image == null
+                      ? Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                          ),
+                        )
+                      : Image.file(
+                          File(provider.image ?? ""),
+                          height: size.height * 0.3,
+                          width: size.width * 0.7,
                         ),
-                      ),
-                    ),
-                  ),
-                  //Image Button
-                  Center(
-                      child: IconButton(
-                    onPressed: () => _getPhoto(context, provider),
-                    icon: const Icon(FontAwesomeIcons.image,
-                        color: Colors.white, size: 100),
-                  )),
-                ])
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.file(File(provider.image ?? "")),
                 ),
-
+              ),
+            ),
+            //Image Button
+            provider.image == null
+                ? Align(
+                    alignment: Alignment.bottomCenter,
+                    child: IconButton(
+                      onPressed: () => _getPhoto(context, provider),
+                      icon: const Icon(FontAwesomeIcons.image,
+                          color: Colors.white, size: 50),
+                    ))
+                : const SizedBox(height: 0)
+          ]),
+          const SizedBox(height: 10),
+          //Preview
+          Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                "Preview:",
+                style: AppThemeData.darkText.headline3,
+              )),
           //Course Preview
           coursePreview(provider, size),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -132,7 +229,7 @@ class CourseWidget extends ConsumerWidget {
           ),
         ),
         child: SizedBox(
-            height: size.height * 0.25,
+            height: size.height * 0.2,
             width: size.width,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,7 +240,15 @@ class CourseWidget extends ConsumerWidget {
                   height: size.height * 0.25,
                   child: provider.image == null
                       ? const Icon(FontAwesomeIcons.image, size: 100)
-                      : Image.file(File(provider.image ?? "")),
+                      : ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          child: Image.file(
+                            File(provider.image ?? ""),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                 ),
 
                 ///

@@ -31,6 +31,11 @@ class ListSettingWidget extends StatelessWidget {
                           RouteGenerator.courseUploadPage,
                         );
                       }
+                      if (item.id == 3) {
+                        Navigator.of(context).pushNamed(
+                          RouteGenerator.yourCreatedCouse,
+                        );
+                      }
                     },
                     child: Container(
                       height: 50,

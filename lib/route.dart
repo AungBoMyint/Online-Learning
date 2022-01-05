@@ -12,6 +12,7 @@ import 'package:online_learning/presentation/page/update/update_profile.dart';
 import 'package:online_learning/presentation/page/upload/add_content_page.dart';
 import 'package:online_learning/presentation/page/upload/add_quiz_page.dart';
 import 'package:online_learning/presentation/page/upload/upload_course_page.dart';
+import 'package:online_learning/presentation/resuable_widgets/profile/profile.dart';
 import 'package:online_learning/presentation/screen/check_user_screen.dart';
 
 import 'presentation/page/login_page.dart';
@@ -32,7 +33,10 @@ class RouteGenerator {
   static const String lessonDetailPage = '/lessonDetailPage';
   static const String moduleDetailPage = '/moduleDetailPage';
   static const String reviewPage = '/reviewPage';
+
+  ///Setting Page
   static const String updateProfile = '/updateProfile';
+  static const String yourCreatedCouse = "/yourCreatedCourse";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -85,6 +89,10 @@ class RouteGenerator {
       case updateProfile:
         return MaterialPageRoute(
           builder: (context) => const UpdateProfilePage(),
+        );
+      case yourCreatedCouse:
+        return MaterialPageRoute(
+          builder: (context) => const YourCreatedCourseWidget(),
         );
 
       ///

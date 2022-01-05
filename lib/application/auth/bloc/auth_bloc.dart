@@ -30,10 +30,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               if ((!document!.exists && user.emailVerified)) {
                 await _authParent.addCurrentUserToFirebaseFirestore(
                   user: UserModal(
-                    userId: user.uid,
                     userName: user.displayName ?? "",
                     email: user.email ?? "",
                     image: user.photoURL ?? "",
+                    quizScore: 0,
+                    admin: false,
                   ),
                 );
               }

@@ -35,6 +35,13 @@ abstract class FirebaseFunctionParent {
   //Update User Profile
   Future<Either<FunctionFailure, Unit>> updateUserProfile({
     required UserModal userModal,
+    required String password,
+  });
+
+  //Update Course
+  Future<Either<FunctionFailure, Unit>> updateCourse({
+    required Course course,
+    required String? courseImage,
   });
 
   //////////////////////////......................../////////////////////////

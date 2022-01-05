@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:online_learning/application/provider/get_user_id.dart';
 import 'package:online_learning/domain/json/course/course.dart';
 import 'package:online_learning/domain/json/course/lesson.dart';
-import 'package:online_learning/domain/json/course/module.dart';
 
 class CourseProvider extends ChangeNotifier {
-  final CurrentUser _currentUser;
-
   ///All Data
-  CourseProvider(this._currentUser);
+  CourseProvider();
   String? courseTitle;
   String? courseDescription;
   String? courseOverview;
@@ -16,7 +12,6 @@ class CourseProvider extends ChangeNotifier {
   String? type = "Beginner";
   String? image;
   //////////
-  Module? moduleObject;
 
   Course? course;
   Lesson? lesson;
@@ -55,10 +50,13 @@ class CourseProvider extends ChangeNotifier {
   void uploadCourse() {
     course = Course.empty().copyWith(
       courseName: courseTitle,
-      creator: _currentUser.getCurrentUserId()?.displayName,
       description: courseDescription,
+      overview: courseOverview,
       image: image,
-      advanceCource: false,
+      type: type,
+      tag: tag,
+      learners: 0,
+      rating: 0,
     );
     notifyListeners();
   }

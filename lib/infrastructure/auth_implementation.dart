@@ -4,11 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_learning/application/provider/get_user_id.dart';
 import 'package:online_learning/domain/auth/auth_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dartz/dartz.dart';
 import 'package:online_learning/domain/auth/auth_parent.dart';
 import 'package:online_learning/domain/json/user/user.dart';
+
+import '../injectable_configuration.dart';
 
 @LazySingleton(as: AuthParent)
 class AuthImplementation extends AuthParent {
@@ -141,7 +144,12 @@ class AuthImplementation extends AuthParent {
     required UserModal? user,
   }) async {
     final Map<String, dynamic> userJson = user!.toJson();
-    await _firebaseFirestore.collection('users').doc(user.userId).set(userJson);
+    await _firebaseFirestore
+        .collection('users')
+        .doc(
+          getIt<CurrentUser>().getCurrentUserId()!.uid,
+        )
+        .set(userJson);
   }
 
   /*@override

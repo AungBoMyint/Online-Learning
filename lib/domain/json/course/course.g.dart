@@ -9,19 +9,25 @@ part of 'course.dart';
 _$_Course _$$_CourseFromJson(Map<String, dynamic> json) => _$_Course(
       id: json['id'] as String,
       courseName: json['courseName'] as String?,
-      creator: json['creator'] as String?,
       description: json['description'] as String?,
-      advanceCource: json['advanceCource'] as bool?,
+      overview: json['overview'] as String?,
+      type: json['type'] as String?,
+      tag: json['tag'] as String?,
       image: json['image'] as String?,
-      ownerId: json['ownerId'] as String,
+      learners: json['learners'] as int,
+      rating: json['rating'] as int,
+      dateTime: json['dateTime'] as int,
     );
 
 Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
       'id': instance.id,
       'courseName': instance.courseName,
-      'creator': instance.creator,
       'description': instance.description,
-      'advanceCource': instance.advanceCource,
+      'overview': instance.overview,
+      'type': instance.type,
+      'tag': instance.tag,
       'image': instance.image,
-      'ownerId': instance.ownerId,
+      'learners': instance.learners,
+      'rating': instance.rating,
+      'dateTime': instance.dateTime,
     };

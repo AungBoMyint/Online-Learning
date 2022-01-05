@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:online_learning/application/provider/course_provider.dart';
 import 'package:online_learning/domain/json/course/lesson.dart';
 import 'package:online_learning/domain/json/course/lesson_image_or_description_or_video.dart';
 import 'package:uuid/uuid.dart';
 
 class LessonProvider extends ChangeNotifier {
-  final CourseProvider courseProvider;
-  LessonProvider(this.courseProvider);
+  LessonProvider();
 
   ///All data
   ///Module Id

@@ -1789,6 +1789,8 @@ abstract class $EventToEmitUserDocumentChangeCopyWith<$Res> {
           $Res Function(EventToEmitUserDocumentChange) then) =
       _$EventToEmitUserDocumentChangeCopyWithImpl<$Res>;
   $Res call({UserModal userModal});
+
+  $UserModalCopyWith<$Res> get userModal;
 }
 
 /// @nodoc
@@ -1814,6 +1816,13 @@ class _$EventToEmitUserDocumentChangeCopyWithImpl<$Res>
           : userModal // ignore: cast_nullable_to_non_nullable
               as UserModal,
     ));
+  }
+
+  @override
+  $UserModalCopyWith<$Res> get userModal {
+    return $UserModalCopyWith<$Res>(_value.userModal, (value) {
+      return _then(_value.copyWith(userModal: value));
+    });
   }
 }
 
@@ -2067,6 +2076,8 @@ abstract class $AuthStateCopyWith<$Res> {
       bool registerLoading,
       UserModal? userModal,
       Option<Either<AuthFailure, Unit>> authFailureOrNot});
+
+  $UserModalCopyWith<$Res>? get userModal;
 }
 
 /// @nodoc
@@ -2128,6 +2139,17 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
               as Option<Either<AuthFailure, Unit>>,
     ));
   }
+
+  @override
+  $UserModalCopyWith<$Res>? get userModal {
+    if (_value.userModal == null) {
+      return null;
+    }
+
+    return $UserModalCopyWith<$Res>(_value.userModal!, (value) {
+      return _then(_value.copyWith(userModal: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -2146,6 +2168,9 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       bool registerLoading,
       UserModal? userModal,
       Option<Either<AuthFailure, Unit>> authFailureOrNot});
+
+  @override
+  $UserModalCopyWith<$Res>? get userModal;
 }
 
 /// @nodoc

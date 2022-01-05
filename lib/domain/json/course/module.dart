@@ -10,6 +10,7 @@ class Module with _$Module {
   const factory Module({
     required String id,
     required String? moduleTitle,
+    required int dateTime,
   }) = _Module;
 
   factory Module.fromJson(Map<String, dynamic> json) => _$ModuleFromJson(json);
@@ -17,5 +18,6 @@ class Module with _$Module {
   factory Module.empty() => Module(
         id: Uuid().v1(),
         moduleTitle: null,
+        dateTime: DateTime.now().millisecondsSinceEpoch,
       );
 }

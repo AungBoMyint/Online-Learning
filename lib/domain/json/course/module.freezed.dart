@@ -21,10 +21,14 @@ Module _$ModuleFromJson(Map<String, dynamic> json) {
 class _$ModuleTearOff {
   const _$ModuleTearOff();
 
-  _Module call({required String id, required String? moduleTitle}) {
+  _Module call(
+      {required String id,
+      required String? moduleTitle,
+      required int dateTime}) {
     return _Module(
       id: id,
       moduleTitle: moduleTitle,
+      dateTime: dateTime,
     );
   }
 
@@ -40,6 +44,7 @@ const $Module = _$ModuleTearOff();
 mixin _$Module {
   String get id => throw _privateConstructorUsedError;
   String? get moduleTitle => throw _privateConstructorUsedError;
+  int get dateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +55,7 @@ mixin _$Module {
 abstract class $ModuleCopyWith<$Res> {
   factory $ModuleCopyWith(Module value, $Res Function(Module) then) =
       _$ModuleCopyWithImpl<$Res>;
-  $Res call({String id, String? moduleTitle});
+  $Res call({String id, String? moduleTitle, int dateTime});
 }
 
 /// @nodoc
@@ -65,6 +70,7 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? moduleTitle = freezed,
+    Object? dateTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -75,6 +81,10 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
           ? _value.moduleTitle
           : moduleTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -84,7 +94,7 @@ abstract class _$ModuleCopyWith<$Res> implements $ModuleCopyWith<$Res> {
   factory _$ModuleCopyWith(_Module value, $Res Function(_Module) then) =
       __$ModuleCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String? moduleTitle});
+  $Res call({String id, String? moduleTitle, int dateTime});
 }
 
 /// @nodoc
@@ -100,6 +110,7 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? moduleTitle = freezed,
+    Object? dateTime = freezed,
   }) {
     return _then(_Module(
       id: id == freezed
@@ -110,6 +121,10 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
           ? _value.moduleTitle
           : moduleTitle // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -117,7 +132,8 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Module implements _Module {
-  const _$_Module({required this.id, required this.moduleTitle});
+  const _$_Module(
+      {required this.id, required this.moduleTitle, required this.dateTime});
 
   factory _$_Module.fromJson(Map<String, dynamic> json) =>
       _$$_ModuleFromJson(json);
@@ -126,10 +142,12 @@ class _$_Module implements _Module {
   final String id;
   @override
   final String? moduleTitle;
+  @override
+  final int dateTime;
 
   @override
   String toString() {
-    return 'Module(id: $id, moduleTitle: $moduleTitle)';
+    return 'Module(id: $id, moduleTitle: $moduleTitle, dateTime: $dateTime)';
   }
 
   @override
@@ -139,11 +157,13 @@ class _$_Module implements _Module {
             other is _Module &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.moduleTitle, moduleTitle) ||
-                other.moduleTitle == moduleTitle));
+                other.moduleTitle == moduleTitle) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, moduleTitle);
+  int get hashCode => Object.hash(runtimeType, id, moduleTitle, dateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -157,8 +177,10 @@ class _$_Module implements _Module {
 }
 
 abstract class _Module implements Module {
-  const factory _Module({required String id, required String? moduleTitle}) =
-      _$_Module;
+  const factory _Module(
+      {required String id,
+      required String? moduleTitle,
+      required int dateTime}) = _$_Module;
 
   factory _Module.fromJson(Map<String, dynamic> json) = _$_Module.fromJson;
 
@@ -166,6 +188,8 @@ abstract class _Module implements Module {
   String get id;
   @override
   String? get moduleTitle;
+  @override
+  int get dateTime;
   @override
   @JsonKey(ignore: true)
   _$ModuleCopyWith<_Module> get copyWith => throw _privateConstructorUsedError;

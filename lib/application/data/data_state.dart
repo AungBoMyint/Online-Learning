@@ -5,6 +5,7 @@ class DataState with _$DataState {
   const factory DataState({
     required bool isCourseUpload,
     required bool isLoadingUpdateProfile,
+    required bool isLoadingUpdateCourse,
     required List<Course>? courseList,
     required List<Course>? currentUserCourseList,
     required List<Module>? moduleList,
@@ -16,6 +17,7 @@ class DataState with _$DataState {
   factory DataState.init() => DataState(
         isCourseUpload: false,
         isLoadingUpdateProfile: false,
+        isLoadingUpdateCourse: false,
         failureOrSuccess: none(),
         courseList: [],
         moduleList: [],

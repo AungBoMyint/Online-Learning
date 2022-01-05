@@ -25,7 +25,7 @@ Map<String, dynamic> _$$_LessonImageOrDescriptionOrVideoToJson<T>(
       'id': instance.id,
       'image': instance.image,
       'imageDescription': instance.imageDescription,
-      'content': instance.content,
+      'content': instance.content?.toJson(),
       'videoLink': instance.videoLink,
       'quiz': QuestionConveter<T?>().toJson(instance.quiz),
     };

@@ -22,7 +22,7 @@ class YourCreatedCourseWidget extends StatelessWidget {
       body: BlocConsumer<DataBloc, DataState>(
         builder: (context, state) {
           final courseList = state.currentUserCourseList;
-          if (courseList == null) {
+          if (courseList == null || courseList.isEmpty) {
             return Center(
                 child: SizedBox(
                     height: size.height * 0.3,
@@ -65,22 +65,30 @@ class YourCreatedCourseWidget extends StatelessWidget {
                     child: Center(
                       child: ListTile(
                         //Course Image
-                        leading: CachedNetworkImage(
-                          imageUrl: courseList[index].image ?? "",
-                          fit: BoxFit.fill,
-                          progressIndicatorBuilder: (context, url, status) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator(
-                                  value: status.progress,
+                        leading: Container(
+                          height: size.height * 0.2,
+                          width: size.width * 0.2,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          )),
+                          child: CachedNetworkImage(
+                            imageUrl: courseList[index].image ?? "",
+                            fit: BoxFit.fill,
+                            progressIndicatorBuilder: (context, url, status) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    value: status.progress,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
+                              );
+                            },
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
                         ),
 
                         ///Course TItle

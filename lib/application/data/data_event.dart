@@ -39,8 +39,8 @@ class DataEvent with _$DataEvent {
 
   /////GET FROM COLLECTION AND DOCUMENT
   const factory DataEvent.listenAllCourse() = ListenAllCourse;
-  const factory DataEvent.listenCurrentUserOwnCourses() =
-      ListenCurrentUserOwnCourse;
+  const factory DataEvent.getCurrentUserOwnCoursesList() =
+      GetCurrentUserOwnCourseList;
   const factory DataEvent.getCurrentCourseModules({
     required String courseId,
   }) = GetCurrentCourseModules;

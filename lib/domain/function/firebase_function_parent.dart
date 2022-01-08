@@ -45,8 +45,9 @@ abstract class FirebaseFunctionParent {
   });
 
   //////////////////////////......................../////////////////////////
-  /////.....Listen Current User's course............/////////
-  Stream<QuerySnapshot<Course>> currentUserOwnCourse();
+  /////.....Get Current User's course............/////////
+  Future<Either<FunctionFailure, QuerySnapshot<Course>>>
+      getCurrentUserOwnCourseList();
 
   ///Listen All Course
   Stream<QuerySnapshot<Course>> allCourse();

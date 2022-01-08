@@ -17,6 +17,7 @@ _$_Course _$$_CourseFromJson(Map<String, dynamic> json) => _$_Course(
       learners: json['learners'] as int,
       rating: json['rating'] as int,
       dateTime: json['dateTime'] as int,
+      ownerId: json['ownerId'] as String?,
     );
 
 Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
       'learners': instance.learners,
       'rating': instance.rating,
       'dateTime': instance.dateTime,
+      'ownerId': instance.ownerId,
     };

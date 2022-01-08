@@ -20,12 +20,14 @@ class Course with _$Course {
     required int learners,
     required int rating,
     required int dateTime,
+    required String? ownerId,
   }) = _Course;
 
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
 
   factory Course.empty() => Course(
         id: Uuid().v1(),
+        ownerId: null,
         courseName: null,
         description: null,
         overview: null,

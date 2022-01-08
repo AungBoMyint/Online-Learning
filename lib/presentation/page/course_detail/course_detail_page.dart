@@ -9,7 +9,6 @@ import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
 import 'package:online_learning/domain/data/theme.dart';
-import 'package:online_learning/domain/hive/course_hive.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../route.dart';
@@ -151,9 +150,6 @@ class CourseDetialPage extends ConsumerWidget {
                           ///the first lesson from FirebaseFirestore
                           BlocProvider.of<FunctionBloc>(context)
                               .add(const ChangeLessonIndex(lessonIndex: 0));
-                          //TODO: we add this module into Current Course
-                          provider.addThisModuleOrNot(
-                              moduleid: state.moduleList![index].id);
                           //Then Change Module Length
                           provider.changeModuleLength(
                               value: state.moduleList!.length);
@@ -186,41 +182,6 @@ class CourseDetialPage extends ConsumerWidget {
                                   child: Text(
                                     moduleList[index].moduleTitle ?? "",
                                     style: AppThemeData.darkText.headline3,
-                                  ),
-                                ),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child:
-                                      ValueListenableBuilder<Box<CourseHive>>(
-                                    valueListenable:
-                                        Hive.box<CourseHive>('progressCourse')
-                                            .listenable(
-                                                keys: [provider.courseId]),
-                                    builder: (context, box, widget) {
-                                      //If user have already enter this course,we need to show progress or
-                                      if (provider.isContainThisModule(
-                                          moduleId:
-                                              state.moduleList![index].id)) {
-                                        return LinearPercentIndicator(
-                                          //Course Progress
-                                          lineHeight: 10,
-                                          percent:
-                                              0.5 /*box
-                                                .get(provider.courseId)!
-                                                .moduleMap[
-                                                    state.moduleList![index].id]!
-                                                .moduleProgress*/
-                                          ,
-                                          progressColor: Colors.blue,
-                                          backgroundColor: Colors.grey,
-                                        );
-                                      }
-                                      //Or don't need to show progress
-                                      else {
-                                        return const Icon(FontAwesomeIcons.lock,
-                                            color: Colors.black);
-                                      }
-                                    },
                                   ),
                                 ),
                               ),

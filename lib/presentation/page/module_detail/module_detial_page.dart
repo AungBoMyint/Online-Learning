@@ -28,12 +28,6 @@ class ModuleDetailPage extends ConsumerWidget {
                 print("LessonIndex: ${state.lessonIndex}");
 
                 ///We Need To Add This Lesson because This is the first page/
-                /////////
-                provider.addThisLessonOrNot(
-                  lessonId: lessonList[0].id,
-                  lessonLength: lessonList.length,
-                );
-                ////
                 provider.addLessonList(lessonList.length);
                 return Scaffold(
                     backgroundColor: Colors.blue[50],
@@ -76,12 +70,6 @@ class ModuleDetailPage extends ConsumerWidget {
                                   itemBuilder: (context, index) {
                                     return InkWell(
                                       onTap: () {
-                                        ///............///////
-                                        provider.addThisLessonOrNot(
-                                          lessonId: lessonList[index].id,
-                                          lessonLength: lessonList.length,
-                                        );
-
                                         ///Change LessonIndex into Function Bloc
                                         BlocProvider.of<FunctionBloc>(context)
                                             .add(ChangeLessonIndex(

@@ -9,11 +9,9 @@ import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/provider/provider.dart';
 import 'package:online_learning/application/provider/update_course.dart';
 import 'package:online_learning/domain/data/theme.dart';
-import 'package:online_learning/domain/json/course/course.dart';
 
 class UpdateCourse extends ConsumerStatefulWidget {
-  final Course course;
-  const UpdateCourse({Key? key, required this.course}) : super(key: key);
+  const UpdateCourse({Key? key}) : super(key: key);
 
   @override
   _UpdateCourseState createState() => _UpdateCourseState();
@@ -26,9 +24,10 @@ class _UpdateCourseState extends ConsumerState<UpdateCourse> {
 
   @override
   void initState() {
-    _titleController.text = widget.course.courseName ?? "";
-    _descriptionController.text = widget.course.description ?? "";
-    _overviewController.text = widget.course.overview ?? "";
+    final provider = ref.read(updateCourseProvider);
+    _titleController.text = provider.course?.courseName ?? "";
+    _descriptionController.text = provider.course?.description ?? "";
+    _overviewController.text = provider.course?.overview ?? "";
     super.initState();
   }
 
@@ -57,7 +56,7 @@ class _UpdateCourseState extends ConsumerState<UpdateCourse> {
             onPressed: () {
               //Update Course Into Firebase
               BlocProvider.of<DataBloc>(context).add(DataEvent.updateCourse(
-                course: widget.course.copyWith(
+                course: provider.course!.copyWith(
                   courseName: _titleController.text,
                   description: _descriptionController.text,
                   overview: _overviewController.text,
@@ -234,7 +233,7 @@ class _UpdateCourseState extends ConsumerState<UpdateCourse> {
                     width: size.width * 0.7,
                     child: provider.image == null
                         ? Image.network(
-                            widget.course.image ?? "",
+                            provider.course?.image ?? "",
                             height: size.height * 0.3,
                             width: size.width * 0.7,
                           )

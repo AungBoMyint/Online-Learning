@@ -7,21 +7,12 @@ import 'package:online_learning/application/auth/bloc/auth_bloc.dart';
 import 'package:online_learning/application/data/data_bloc.dart';
 import 'package:online_learning/application/function/bloc/function_bloc.dart';
 import 'package:online_learning/domain/data/theme.dart';
-import 'package:online_learning/domain/hive/course_hive.dart';
-import 'package:online_learning/domain/hive/module_hive.dart';
 import 'package:online_learning/injectable_configuration.dart';
 import 'package:online_learning/route.dart';
-import 'package:path_provider/path_provider.dart';
 import 'application/initial/bloc/initial_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final directory = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(directory.path);
-  Hive.registerAdapter<CourseHive>(CourseHiveAdapter());
-  Hive.registerAdapter<ModuleHive>(ModuleHiveAdapter());
-  await Hive.openBox<CourseHive>('progressCourse');
   configureInjection(Environment.prod);
   await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
@@ -41,9 +32,7 @@ class MyApp extends StatelessWidget {
                 const CheckUserAuthenticatedState(),
               )),
         BlocProvider<DataBloc>(
-            create: (_) => getIt<DataBloc>()
-              ..add(const ListenAllCourse())
-              ..add(const ListenCurrentUserOwnCourse())),
+            create: (_) => getIt<DataBloc>()..add(const ListenAllCourse())),
         BlocProvider<InitialBloc>(create: (_) => InitialBloc()),
         BlocProvider<FunctionBloc>(create: (_) => FunctionBloc())
       ],

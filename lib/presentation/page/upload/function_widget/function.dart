@@ -208,6 +208,10 @@ void showDialogToChooseModuleListForEachFunction(
     context: context,
     builder: (context) {
       return AlertDialog(
+        insetPadding: const EdgeInsets.symmetric(
+            vertical: 100,
+            horizontal:
+                20), //contentPadding: const EdgeInsets.only(top: 100, bottom: 100),
         title: Text(dialogTitle,
             style: const TextStyle(
               color: Colors.black,
@@ -218,36 +222,44 @@ void showDialogToChooseModuleListForEachFunction(
         content: BlocConsumer<DataBloc, DataState>(
           builder: (context, state) {
             final moduleList = state.moduleList;
-            if (moduleList != null) {
-              return ListView.separated(
-                itemBuilder: (context, index) {
-                  return TextButton(
-                    onPressed: () {
-                      ///Pop This Dialog
-                      Navigator.of(context).pop();
-
-                      ///Then we add this module's ID into lessonProvider
-
-                      ///Then We Call CallBack Function of Each Method this function
-                      ///is called.
-                      callBack(moduleList[index].id);
-                    },
-                    child: Text(moduleList[index].moduleTitle ?? "",
-                        style: const TextStyle(
-                          color: Colors.blue,
-                        )),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const SizedBox(height: 10);
-                },
-                itemCount: moduleList.length,
+            if (moduleList == null || moduleList.isEmpty) {
+              return const Center(
+                child: Text("Here is no any module!.",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    )),
               );
             } else {
-              return const Text("Here is no any module!.",
-                  style: TextStyle(
-                    color: Colors.red,
-                  ));
+              return SizedBox(
+                height: 300,
+                width: 200,
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return TextButton(
+                      onPressed: () {
+                        ///Pop This Dialog
+                        Navigator.of(context).pop();
+
+                        ///Then we add this module's ID into lessonProvider
+
+                        ///Then We Call CallBack Function of Each Method this function
+                        ///is called.
+                        callBack(moduleList[index].id);
+                      },
+                      child: Text(moduleList[index].moduleTitle ?? "",
+                          style: const TextStyle(
+                            color: Colors.blue,
+                          )),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: 10);
+                  },
+                  itemCount: moduleList.length,
+                ),
+              );
             }
           },
           listener: (context, state) {},

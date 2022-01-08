@@ -146,12 +146,13 @@ class DataBloc extends Bloc<DataEvent, DataState> {
     });
 
     ////Getting Current User's Created Course
-    on<ListenCurrentUserOwnCourse>((event, emit) async {
-      emit(state.copyWith(courseList: null));
-      _firebaseFunction.currentUserOwnCourse().listen((event) async {
-        print("Course List: ${event.docs.map((e) => e.data()).toList()}");
-        add(EmitCurrentUserCourseListStream(
-            courseList: event.docs.map((e) => e.data()).toList()));
+    on<GetCurrentUserOwnCourseList>((event, emit) async {
+      await _firebaseFunction.getCurrentUserOwnCourseList().then((value) {
+        value.fold((l) => null, (r) async {
+          add(EmitCurrentUserCourseListStream(
+            courseList: r.docs.map((e) => e.data()).toList(),
+          ));
+        });
       });
     }, transformer: sequential());
     on<EmitCurrentUserCourseListStream>((event, emit) => emit(state.copyWith(
@@ -161,7 +162,7 @@ class DataBloc extends Bloc<DataEvent, DataState> {
     //Get Current Course's Module
     on<GetCurrentCourseModules>(
       (event, emit) async {
-        emit(state.copyWith(moduleList: null));
+        emit(state.copyWith(moduleList: []));
         await _firebaseFunction
             .getCurrentCourseModule(courseId: event.courseId)
             .then((value) => emit(state.copyWith(

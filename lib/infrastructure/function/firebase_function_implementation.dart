@@ -51,13 +51,11 @@ class FirebaseFunctionImplementation extends FirebaseFunctionParent {
               dateTime: DateTime.now().millisecondsSinceEpoch,
             );
             //then we store this course into Firestore
-            _firebaseFirestore
-                .collection("courses")
-                .doc(getIt<CurrentUser>().getCurrentUserId()!.uid)
-                .collection("course")
-                .doc(course.id)
-                .set(
-                  course.toJson(),
+            _firebaseFirestore.collection("courses").doc(course.id).set(
+                  course
+                      .copyWith(
+                          ownerId: getIt<CurrentUser>().getCurrentUserId()!.uid)
+                      .toJson(),
                 );
           });
         }).then((value) => _completer.complete(const Right(unit)));
@@ -154,17 +152,27 @@ class FirebaseFunctionImplementation extends FirebaseFunctionParent {
   }
 
   /////////////Listen Each Current User's Course Collection........///////////////////
+  ///Listen Current User's Own Course
   @override
-  Stream<QuerySnapshot<Course>> currentUserOwnCourse() async* {
-    yield* _firebaseFirestore
-        .collection("courses")
-        .doc(getIt<CurrentUser>().getCurrentUserId()!.uid)
-        .collection("course")
-        .orderBy('dateTime', descending: true)
-        .withConverter<Course>(
-            fromFirestore: (snapshot, _) => Course.fromJson(snapshot.data()!),
-            toFirestore: (course, _) => course.toJson())
-        .snapshots();
+  Future<Either<FunctionFailure, QuerySnapshot<Course>>>
+      getCurrentUserOwnCourseList() async {
+    final Completer<Either<FunctionFailure, QuerySnapshot<Course>>> _completer =
+        Completer();
+    try {
+      await _firebaseFirestore
+          .collection("courses")
+          .where("ownerId",
+              isEqualTo: getIt<CurrentUser>().getCurrentUserId()!.uid)
+          //.orderBy('dateTime', descending: true)
+          .withConverter<Course>(
+              fromFirestore: (snapshot, _) => Course.fromJson(snapshot.data()!),
+              toFirestore: (course, _) => course.toJson())
+          .get()
+          .then((value) => _completer.complete(Right(value)));
+    } on FirebaseException catch (e) {
+      _completer.complete(const Left(FunctionFailure.fialToUpload()));
+    }
+    return _completer.future;
   }
 
   ////Listen All Course
@@ -172,8 +180,6 @@ class FirebaseFunctionImplementation extends FirebaseFunctionParent {
   Stream<QuerySnapshot<Course>> allCourse() async* {
     yield* _firebaseFirestore
         .collection("courses")
-        .doc()
-        .collection("course")
         .orderBy('dateTime', descending: true)
         .withConverter<Course>(
           fromFirestore: (snapshot, _) => Course.fromJson(snapshot.data()!),
